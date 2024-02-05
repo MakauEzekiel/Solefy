@@ -4,6 +4,7 @@ import React, { useRef } from 'react'
 import Image from 'next/image'
 import { FaPlus, FaMinus } from 'react-icons/fa'
 import { useAppContext } from '@/context'
+import { RxCross2 } from 'react-icons/rx'
 
 const CartDrawer = () => {
   const { cartItems, toggleCartItemQuantity, onRemove, setIsOpen, totalPrice } = useAppContext();
@@ -11,20 +12,20 @@ const CartDrawer = () => {
   return (
     <div className='relative h-screen w-full bg-[#f2f2f2]'>
       <div className='absolute top-0 w-full justify-center items-center text-center'>
-        <h2 className='text-5xl font-bold mt-8'>CART</h2>
+        <h2 className='sm:text-5xl text-4xl font-bold mt-8'>CART</h2>
       </div>
       
       <div className=' absolute w-full top-28 bottom-[280px] overflow-y-auto'>
         {cartItems.length > 0 && cartItems.map((sale:any) => (
             <div className='mb-2' key={sale.product_id}>
             <hr />
-            <div className='flex items-center space-x-4 w-full'>
+            <div className='flex items-center sm:space-x-4 w-full'>
                 <Image src={sale.images[0]} alt='' width={100} height={100} className='w-24 h-32'style={{objectFit:"cover"}} unoptimized />
                 <div className='w-full'>
-                    <p className='font-bold text-2xl'>{sale.name}</p>
+                    <p className='font-bold sm:text-2xl text-1xl'>{sale.name}</p>
                     <p className='text-sm'>Size: Small</p>
                 </div>
-                <div className='min-w-[100px]'>
+                <div className='hidden sm:block min-w-[100px]'>
                 <div className="py-2 px-3 inline-block bg-[#f2f2f2]" data-hs-input-number>
                   <div className="flex items-center gap-x-1.5">
                   <button onClick={() => toggleCartItemQuantity(sale.product_id, 'dec')} className="text-red mr-[0px] hover:before:bg-redborder-black relative rounded-full h-[32px] w-[32px] overflow-hidden bg-[#f2f2f2] px-3 text-black shadow-2xl transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-black before:transition-all before:duration-500 hover:text-white hover:shadow-black hover:before:left-0 hover:before:w-full">
@@ -38,11 +39,29 @@ const CartDrawer = () => {
                 </div>
                 </div>
                 <div>
+                <div className='sm:hidden block min-w-[100px]'>
+                <div className="py-2 px-3 inline-block bg-[#f2f2f2]" data-hs-input-number>
+                  <div className="flex items-center gap-x-1.5">
+                  <button onClick={() => toggleCartItemQuantity(sale.product_id, 'dec')} className="text-red mr-[0px] hover:before:bg-redborder-black relative rounded-full h-[32px] w-[32px] overflow-hidden bg-[#f2f2f2] px-3 text-black shadow-2xl transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-black before:transition-all before:duration-500 hover:text-white hover:shadow-black hover:before:left-0 hover:before:w-full">
+                    <span className="relative z-10"><FaMinus className='w-[10px] h-[10px]'/></span>
+                  </button>
+                    <input className="p-0 w-4 bg-transparent border-0 text-gray-800 text-center focus:ring-0 dark:text-black" type="text" value={sale.quantity} data-hs-input-number-input readOnly/>
+                    <button onClick={() => toggleCartItemQuantity(sale.product_id, 'inc')} className="text-red mr-[0px] hover:before:bg-redborder-black relative rounded-full h-[32px] w-[32px] overflow-hidden bg-[#f2f2f2] px-3 text-black shadow-2xl transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-black before:transition-all before:duration-500 hover:text-white hover:shadow-black hover:before:left-0 hover:before:w-full">
+                      <span className="relative z-10"><FaPlus className='w-[10px] h-[10px]'/></span>
+                    </button>
+                  </div>
+                </div>
+                </div>
                   <p className='text-center text-2xl font-bold'>R{sale.totalAmount}</p>
                 </div>
-                <div className='pr-0'>
+                <div className='sm:block hidden pr-0'>
                   <button onClick={() => onRemove(sale.product_id)} className="pl-6 pr-6 h-[128px] bg-[#f2f2f2] w-full text-black right-0 top-0 relative overflow-hidden bg-[#f2f2f2] text-black transition-all before:absolute before:left-0 before:top-0 before:h-full before:w-0 before:duration-500 after:absolute after:right-0 after:top-0 after:h-full after:w-0 after:duration-500 hover:text-white hover:shadow-black hover:before:w-2/4 hover:before:bg-black hover:after:w-2/4 hover:after:bg-black">
                     <span className="relative z-10 uppercase">delete</span>
+                  </button>
+                </div>
+                <div className='sm:hidden block pr-0'>
+                  <button onClick={() => onRemove(sale.product_id)} className="pl-6 pr-6 h-[128px] bg-[#f2f2f2] w-full text-black right-0 top-0 relative overflow-hidden bg-[#f2f2f2] text-black transition-all before:absolute before:left-0 before:top-0 before:h-full before:w-0 before:duration-500 after:absolute after:right-0 after:top-0 after:h-full after:w-0 after:duration-500 hover:text-white hover:shadow-black hover:before:w-2/4 hover:before:bg-black hover:after:w-2/4 hover:after:bg-black">
+                      <span className="relative z-10"><RxCross2 className='w-[25px] h-[25px]'/></span>
                   </button>
                 </div>
             </div>

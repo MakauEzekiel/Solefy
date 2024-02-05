@@ -38,7 +38,7 @@ export default function Home() {
       <CategorySlider womenSalesData={menSalesData} menSalesData={menSalesData}/>
       <CategoryBanner/>
       <ProductTrack data={menSalesData}/>
-      <main className="bg-gradient-to-r from-[#f2f2f2] to-[#f2f2f2] w-full min-h-screen mx-auto grid place-items-center">
+      <main className="hidden md:block bg-gradient-to-r from-[#f2f2f2] to-[#f2f2f2] w-full min-h-screen mx-auto grid place-items-center">
         <h2 className='uppercase text-4xl font-bold'>NEWS</h2>
         <Slider/>
       </main>

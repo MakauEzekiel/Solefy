@@ -10,12 +10,13 @@ export function AppWrapper ({ children } : {
     children: React.ReactNode;
 }) {
   const [user, setUser] = useState<any>(null);
+  const [showPopUp, setShowPopUp] = useState(true);
     const [showCart, setshowCart] = useState(false);
     const [cartItems, setCartItems] = useState<any[]>([]);
     const [totalPrice, settotalPrice] = useState(0);
     const [totalQuantities, settotalQuantities] = useState(0);
     const [qty, setqty] = useState(0); 
-    const [isOpen, setIsOpen] = useState(false);
+    const [IsCartOpen, setIsCartOpen] = useState(false);
     const [flag, setflag] = useState(0);
 
     useEffect(() => {
@@ -114,7 +115,7 @@ export function AppWrapper ({ children } : {
           totalPrice += sale.totalAmount;
         })
         settotalPrice(totalPrice);
-        setIsOpen(true);
+        setIsCartOpen(true);
       }
 
       const toggleCartItemQuantity = (product_id:any, value:any) => {
@@ -174,8 +175,10 @@ export function AppWrapper ({ children } : {
             onAdd,
             toggleCartItemQuantity,
             onRemove,
-            isOpen,
-            setIsOpen,
+            IsCartOpen,
+            setIsCartOpen,
+            showPopUp,
+            setShowPopUp
         }}>
             {children}
         </AppContext.Provider>

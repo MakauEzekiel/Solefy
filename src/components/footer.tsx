@@ -96,21 +96,21 @@ const Footer = () => {
         <span className="relative z-10"><FaXTwitter className='w-[25px] h-[25px]'/></span>
       </button>
       </div>
-      <div className='pl-32'>
-        <ul className='text-4xl font-semibold'>
-          <li className="group cursor-pointer mb-8">
+      <div className='md:pl-32 p-8'>
+        <ul className='md:text-4xl text-2xl font-semibold'>
+          <li onClick={()=> handleDrawer('faq')} className="group cursor-pointer mb-8">
           <button onClick={()=> handleDrawer('faq')} className="text-red mr-[12px] hover:before:bg-redborder-black relative rounded-full h-[50px] w-[50px] overflow-hidden bg-[#f2f2f2] px-3 text-black shadow-2xl transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-black before:transition-all before:duration-500 hover:text-white hover:shadow-black hover:before:left-0 hover:before:w-full">
             <span className="relative z-10"><FaPlus className='w-[25px] h-[25px]'/></span>
           </button>
-            Frequently Asked Questions
+            FAQ
             </li>
-          <li className="group cursor-pointer mb-8">
+          <li onClick={()=> handleDrawer('help')} className="group cursor-pointer mb-8">
             <button onClick={()=> handleDrawer('help')} className="text-red mr-[12px] hover:before:bg-redborder-black relative rounded-full h-[50px] w-[50px] overflow-hidden bg-[#f2f2f2] px-3 text-black shadow-2xl transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-black before:transition-all before:duration-500 hover:text-white hover:shadow-black hover:before:left-0 hover:before:w-full">
               <span className="relative z-10"><FaPlus className='w-[25px] h-[25px]'/></span>
             </button>
             Help Center
             </li>
-          <li className="group cursor-pointer mb-16">
+          <li onClick={()=> handleDrawer('sizes')} className="group cursor-pointer mb-16">
             <button onClick={()=> handleDrawer('sizes')} className="text-red mr-[12px] hover:before:bg-redborder-black relative rounded-full h-[50px] w-[50px] overflow-hidden bg-[#f2f2f2] px-3 text-black shadow-2xl transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-black before:transition-all before:duration-500 hover:text-white hover:shadow-black hover:before:left-0 hover:before:w-full">
               <span className="relative z-10"><FaPlus className='w-[25px] h-[25px]'/></span>
             </button>
@@ -133,7 +133,7 @@ const Footer = () => {
       )}
 
       <aside
-        className={`transform top-0 right-0 w-[640px] bg-[#f2f2f2] fixed h-full overflow-auto ease-in-out transition-all duration-700 z-[99999999991] ${
+        className={`transform top-0 right-0 md:w-[640px] w-full bg-[#f2f2f2] fixed h-full overflow-auto ease-in-out transition-all duration-700 z-[99999999991] ${
           !isOpen ? "translate-x-full" : "-translate-x-[0]"
         }`}
       >
@@ -142,12 +142,12 @@ const Footer = () => {
         </button>
         {type === 'faq' && (
             <div className='w-full pt-8'>
-            <p className='text-4xl font-semibold text-center'>Send a message</p>
+            <p className='sm:text-4xl text-2xl font-semibold text-center'>Send a message</p>
             <div className='w-full p-8 pb-0'>
               <p className='text-center text-2xl font-bold'>How can we help?</p>
               <p className='text-center text-1xl font-semibold text-gray-400'>We usually respond in a few hours</p>
             </div>
-            <div className='w-full p-24 pt-0 justify-center items-center'>
+            <div className='w-full md:p-24 p-8 pt-0 justify-center items-center'>
               <form className="space-y-4 md:space-y-6 -w-full mt-16 justtify-center items-center" action="#">
                   <div>
                       <label htmlFor="name" className="block mb-2 text-sm font-medium text-black">Name</label>

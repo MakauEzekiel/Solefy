@@ -10,6 +10,11 @@ import { SideNavItem } from '../types';
 import { Icon } from '@iconify/react';
 import { motion, useCycle } from 'framer-motion';
 import useScroll from '@/hooks/use-scroll';
+import { MdOutlinePerson } from 'react-icons/md';
+import { AiOutlineShopping } from 'react-icons/ai';
+import { useAppContext } from '@/context';
+import CartDrawer from './cartDrawer';
+import { RxCross2 } from 'react-icons/rx';
 
 type MenuItemWithSubMenuProps = {
   item: SideNavItem;
@@ -36,6 +41,7 @@ const sidebar = {
 };
 
 const HeaderMobile = () => {
+  const {IsCartOpen, setIsCartOpen, qty, showPopUp, setShowPopUp} = useAppContext();
   const scrolled = useScroll(5);
   const selectedLayout = useSelectedLayoutSegment();
   const pathname = usePathname();
@@ -43,12 +49,36 @@ const HeaderMobile = () => {
   const { height } = useDimensions(containerRef);
   const [isOpen, toggleOpen] = useCycle(false, true);
 
+  const handleDrawer = () => {
+    setIsCartOpen(!IsCartOpen);
+  };
+
+  useEffect(() => {
+    const handleEscKeyPress = (e:any) => {
+      if (e.keyCode === 27 && IsCartOpen) {
+        setIsCartOpen(false);
+      }
+    };
+
+    if (IsCartOpen) {
+      document.body.style.setProperty("overflow", "hidden");
+    } else {
+      document.body.style.removeProperty("overflow");
+    }
+
+    document.addEventListener("keydown", handleEscKeyPress);
+
+    return () => {
+      document.removeEventListener("keydown", handleEscKeyPress);
+    };
+  }, [IsCartOpen, setIsCartOpen]);
+
   return (
     <motion.nav
       initial={false}
       animate={isOpen ? 'open' : 'closed'}
       custom={height}
-      className={`fixed inset-0 z-50 w-full md:hidden transition-all duration-600 ease-in-out mt-${!scrolled ? '8' : '0'} ${
+      className={`fixed inset-0 z-50 w-full md:hidden transition-all duration-600 ease-in-out mt-${showPopUp && !scrolled ? '8' : '0'} ${
         isOpen ? '' : 'pointer-events-none'
       }`}
       ref={containerRef}
@@ -89,9 +119,37 @@ const HeaderMobile = () => {
           );
         })}
       </motion.ul>
-      <button className='pointer-events-auto absolute right-20 top-[24px] z-30 text-gray-800'>person</button>
-      <button className='pointer-events-auto absolute right-12 top-[24px] z-30 text-gray-800'>cart</button>
+      {/* <button className='pointer-events-auto absolute right-20 top-[24px] z-30 text-gray-800'>person</button>
+      <button className='pointer-events-auto absolute right-12 top-[24px] z-30 text-gray-800'>cart</button> */}
+      <button className='group pointer-events-auto absolute right-24 top-[24px] z-30 text-gray-800'>
+        <Link href='/account/login'>
+            <MdOutlinePerson className='h-[22px] w-[22px]'/>
+        </Link>
+      </button>
+      <button onClick={handleDrawer} className='pointer-events-auto absolute right-14 top-[24px] z-30 text-gray-800'>
+        <AiOutlineShopping className='h-[22px] w-[22px]'/>
+        {/* <span className='absolute mt-[-28px] ml-[8px] text-[]'>0</span> */}
+      </button>
       <MenuToggle toggle={toggleOpen} />
+      {IsCartOpen && (
+        <div className="z-[99999999999999999999] fixed inset-0 transition-opacity">
+          <div
+            onClick={() => setIsCartOpen(false)}
+            className="absolute inset-0 bg-black opacity-50"
+          ></div>
+        </div>
+      )}
+
+      <aside
+        className={`transform top-0 right-0 w-full bg-[#f2f2f2] fixed h-full overflow-auto ease-in-out transition-all duration-700 z-[99999999991] ${
+          !IsCartOpen ? "translate-x-full" : "-translate-x-[0]"
+        }`}
+      >
+        <button onClick={handleDrawer} className="text-white mt-6 absolute right-[16px] z-[999999999999999999999999] hover:before:bg-white rounded-full h-[65px] w-[65px] overflow-hidden bg-black px-3 text-white shadow-2xl transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-white before:transition-all before:duration-500 hover:text-black hover:shadow-white hover:before:left-0 hover:before:w-full">
+            <span className="relative z-10"><RxCross2 className='w-[40px] h-[40px]'/></span>
+        </button>
+        <CartDrawer/>
+      </aside>
     </motion.nav>
   );
 };

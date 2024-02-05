@@ -16,24 +16,23 @@ import { FaSearch } from 'react-icons/fa';
 
 const Header = () => {
   // const { openCart, setOpenCart } = useAppContext(); 
-  const [showPopUp, setShowPopUp] = useState(true);
   const scrolled = useScroll(5);
   const selectedLayout = useSelectedLayoutSegment();
 
-  const {isOpen, setIsOpen, qty} = useAppContext();
+  const {IsCartOpen, setIsCartOpen, qty, showPopUp, setShowPopUp} = useAppContext();
 
   const handleDrawer = () => {
-    setIsOpen(!isOpen);
+    setIsCartOpen(!IsCartOpen);
   };
 
   useEffect(() => {
     const handleEscKeyPress = (e:any) => {
-      if (e.keyCode === 27 && isOpen) {
-        setIsOpen(false);
+      if (e.keyCode === 27 && IsCartOpen) {
+        setIsCartOpen(false);
       }
     };
 
-    if (isOpen) {
+    if (IsCartOpen) {
       document.body.style.setProperty("overflow", "hidden");
     } else {
       document.body.style.removeProperty("overflow");
@@ -44,7 +43,7 @@ const Header = () => {
     return () => {
       document.removeEventListener("keydown", handleEscKeyPress);
     };
-  }, [isOpen, setIsOpen]);
+  }, [IsCartOpen, setIsCartOpen]);
 
   return (
     <main>
@@ -133,10 +132,10 @@ const Header = () => {
                 </div>
               </div>
             </div>
-            {isOpen && (
+            {IsCartOpen && (
         <div className="z-[9999999999] fixed inset-0 transition-opacity">
           <div
-            onClick={() => setIsOpen(false)}
+            onClick={() => setIsCartOpen(false)}
             className="absolute inset-0 bg-black opacity-50"
           ></div>
         </div>
@@ -144,7 +143,7 @@ const Header = () => {
 
       <aside
         className={`transform top-0 right-0 w-[740px] bg-[#f2f2f2] fixed h-full overflow-auto ease-in-out transition-all duration-700 z-[99999999991] ${
-          !isOpen ? "translate-x-full" : "-translate-x-[0]"
+          !IsCartOpen ? "translate-x-full" : "-translate-x-[0]"
         }`}
       >
         <button onClick={handleDrawer} className="text-black mt-6 absolute right-[32px] hover:before:bg-black rounded-full h-[65px] w-[65px] overflow-hidden bg-white px-3 text-black shadow-2xl transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-black before:transition-all before:duration-500 hover:text-white hover:shadow-black hover:before:left-0 hover:before:w-full">

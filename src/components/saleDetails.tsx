@@ -1,14 +1,16 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai'
 import { RxCross2 } from 'react-icons/rx'
 import { FaPlus } from 'react-icons/fa'
 import { useAppContext } from '@/context'
+import ReviewModal from './reviewModal'
 
 const SaleDetails = ({saleData}:any) => {
     const { onAdd } = useAppContext();
     const [selectedSize, setSelectedSize] = useState(null);
+    const [ShowModel, setShowModel] = useState(false);
     const availableSizes = [5, 6, 7, 8, 9, 10, 11, 12];
 
     const handleSizeClick = (size:any) => {
@@ -42,7 +44,8 @@ const SaleDetails = ({saleData}:any) => {
     };
   }, [isOpen]);
   return (
-    <div className='block w-full bg-[#f2f2f2]'>
+    <Fragment>
+      <div className='block w-full bg-[#f2f2f2]'>
                 <h2 className='text-black text-3xl font-bold'>{saleData.name}</h2>
                 <p className='text-1xl font-semibold text-gray-500'>{saleData.category}</p>
                 <div className='flex w-full'>
@@ -52,6 +55,11 @@ const SaleDetails = ({saleData}:any) => {
                     <AiFillStar className='mt-[4px]'/>
                     <AiOutlineStar className='mt-[4px]'/>
                     <p className='pl-[8px] font-semibold text-1xl'>660 Reviews</p>
+                </div>
+                <div className='flex w-full'>
+                  <button className='bg-black text-white py-4' onClick={() => setShowModel(true)}>
+                    Write a review
+                  </button>
                 </div>
                 <p className='text-2xl font-bold mt-8'>R{saleData.price}</p>
                 <hr className='border-gray-600 mr-8 mt-8 mb-4'/>
@@ -221,6 +229,8 @@ const SaleDetails = ({saleData}:any) => {
             )}
         </aside>
             </div>
+            <ReviewModal isVisible={ShowModel} onClose = {()=>setShowModel(false)}/>
+    </Fragment>
   )
 }
 

@@ -12,11 +12,11 @@ const CategoryBanner = () => {
         <div className='relative h-[80vh]'>
         <div className='absolute inset-0 flex items-center justify-between'>
             <div className='w-1/2 h-full bg-black' >
-                <Image className='w-[100%] h-full' src={rightFemale} alt={''} style={{objectFit:"cover"}} unoptimized/>
+                <Image className='w-[100%] h-full' priority={true} src={rightFemale} alt={''} style={{objectFit:"cover"}} unoptimized loading="eager"/>
             </div>
             <div className=' z-[1] absolute w-full h-full bg-gray-900 bg-opacity-30'></div>
             <div className='w-1/2 h-full'>
-                <Image className='w-[100%] h-full' src={leftFemale} alt={''} style={{objectFit:"cover"}} unoptimized/>
+                <Image className='w-[100%] h-full' priority={true} src={leftFemale} alt={''} style={{objectFit:"cover"}} unoptimized loading="eager"/>
             </div>
         </div>
         <div className='z-[2] w-[100%] absolute  text-center item-center justify-center top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[#FF0000]'>
@@ -36,10 +36,10 @@ const CategoryBanner = () => {
         <div className='absolute inset-0 flex items-center justify-between'>
         <div className=' z-[1] absolute w-full h-full bg-gray-900 bg-opacity-30'></div>
             <div className='w-1/2 h-full' >
-                <Image className='w-[100%] h-full' src={leftMen} alt={''} style={{objectFit:"cover"}} unoptimized/>
+                <Image className='w-[100%] h-full' priority={true} src={leftMen} alt={''} style={{objectFit:"cover"}} unoptimized loading="eager"/>
             </div>
             <div className='w-1/2 h-full bg-black'>
-                <Image className='w-[100%] h-full' src={rightMen} alt={''} style={{objectFit:"cover"}} unoptimized/>
+                <Image className='w-[100%] h-full' priority={true} src={rightMen} alt={''} style={{objectFit:"cover"}} unoptimized loading="eager"/>
             </div>
         </div>
         <div className='z-[2] w-[100%] absolute  text-center item-center justify-center top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[#FF0000]'>
