@@ -5,6 +5,7 @@ import { db } from './firebaseConfig';
 import { collection, getDocs} from 'firebase/firestore';
 import { useEffect, useState } from "react";
 import CategorySlider from "@/components/categorySlider";
+import CategoryBanner from "@/components/categoryBanner";
 
 async function fetchSalesFromFirestore(collectionName: string) {
   const querySnapshot = await getDocs(collection(db, collectionName));
@@ -31,6 +32,7 @@ export default function Home() {
     <main className='block w-[100%]'>
       <HeroBanner/>
       <CategorySlider womenSalesData={menSalesData} menSalesData={menSalesData}/>
+      <CategoryBanner/>
     </main>
   );
 }
