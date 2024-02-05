@@ -66,13 +66,13 @@ export default function Search() {
             <h2 className='uppercase text-6xl font-bold mb-16'>{SearchResultsText}</h2>
             <form onSubmit={handleSubmit}  action="#">
                 <div>
-                    <input type="text" name="search" id="search" onChange={e => setSearchText(e.target.value)} className="h-[54px] border-b border-bottom-dotted bg-[#f2f2f2] text-gray-900 sm:text-sm focus:ring-primary-600 focus:border-b-primary-600 block w-[50%] p-2.5 dark:border-b-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-b-blue-500" placeholder="Search..."/>
+                    <input type="text" name="search" id="search" onChange={e => setSearchText(e.target.value)} className="h-[54px] border-b border-bottom-dotted bg-[#f2f2f2] text-gray-900 sm:text-sm focus:ring-primary-600 focus:border-b-primary-600 block sm:w-[50%] w-[96%] p-2.5 dark:border-b-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-b-blue-500" placeholder="Search..."/>
                 </div>
                 <button type="submit" className="mt-12 justfity-center items-center text-center text-red hover:before:bg-redborder-black relative h-[40px] w-[120px] overflow-hidden border border-black bg-[#f2f2f2] px-3 text-black shadow-2xl transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-black before:transition-all before:duration-500 hover:text-white hover:shadow-black hover:before:left-0 hover:before:w-full">
                     <span className="relative z-10 uppercase">search</span>
                 </button>
             </form>
-            <div className='w-full mt-[-120px]'>
+            <div className='w-full mt-[-120px] ml-[-8px]'>
                 <ProductList data={Sales} />
             </div>
         </div>

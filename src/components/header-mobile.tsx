@@ -15,6 +15,7 @@ import { AiOutlineShopping } from 'react-icons/ai';
 import { useAppContext } from '@/context';
 import CartDrawer from './cartDrawer';
 import { RxCross2 } from 'react-icons/rx';
+import { FaSearch } from 'react-icons/fa';
 
 type MenuItemWithSubMenuProps = {
   item: SideNavItem;
@@ -121,6 +122,11 @@ const HeaderMobile = () => {
       </motion.ul>
       {/* <button className='pointer-events-auto absolute right-20 top-[24px] z-30 text-gray-800'>person</button>
       <button className='pointer-events-auto absolute right-12 top-[24px] z-30 text-gray-800'>cart</button> */}
+      <button className='group pointer-events-auto absolute right-36 top-[26px] z-30 text-gray-800'>
+        <Link href='/search'>
+            <FaSearch className='h-[18px] w-[18px]'/>
+        </Link>
+      </button>
       <button className='group pointer-events-auto absolute right-24 top-[24px] z-30 text-gray-800'>
         <Link href='/account/login'>
             <MdOutlinePerson className='h-[22px] w-[22px]'/>
