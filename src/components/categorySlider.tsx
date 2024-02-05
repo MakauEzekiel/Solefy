@@ -52,7 +52,7 @@ const CategorySlider = ({womenSalesData, menSalesData}:any) => {
             breakpoint: 480,
             settings: {
                 slidesToShow: 1,
-                centerPadding: "0px",
+                centerPadding: "8px",
                 centerMode: false,
             },
         },
@@ -60,7 +60,7 @@ const CategorySlider = ({womenSalesData, menSalesData}:any) => {
             breakpoint: 200,
             settings: {
                 slidesToShow: 1,
-                centerPadding: "0px",
+                centerPadding: "8px",
                 centerMode: false,
             },
         },

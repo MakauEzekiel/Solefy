@@ -34,7 +34,7 @@ const ProductList = ({data}:any) => {
                     {(currentSaleCategory === 0) && (
                         <>
                         {setCurrentSaleCategory(3)}
-                        <div className='col-span-2 text-black min-w-[100px] overflow-hidden'>
+                        <div className='hidden sm:flex col-span-2 text-black min-w-[100px] overflow-hidden'>
                             <Link href={`/product-details/${sale.product_id}`}>
                                 <Image src={sale.image} alt="" unoptimized priority placeholder='blur' blurDataURL={sale.base64} loading="eager" width={100} height={100} className='w-full md:max-h-[448px] object-cover hover:scale-105 transform transition-transform ease-in-out duration-300 cursor-pointer'/>
                             </Link>
@@ -44,7 +44,7 @@ const ProductList = ({data}:any) => {
                     <>
                     {setCurrentSaleCategory(currentSaleCategory-1)}
                     <Link  href={`/product-details/${sale.product_id}`}>
-                        <div className='col-span-1 text-black min-w-[100px] overflow-hidden'>
+                        <div className='sm:col-span-1 col-span-2 text-black min-w-[100px] overflow-hidden'>
                             <Image src={sale.image} alt="" unoptimized priority placeholder='blur' blurDataURL={sale.base64} loading="eager" width={100} height={100} className='w-full md:max-h-[400px] object-cover hover:scale-105 transform transition-transform ease-in-out duration-300 cursor-pointer'/>
                             <div className='max-h-[84px]'>
                                 <div className='font-bold'>

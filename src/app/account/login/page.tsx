@@ -66,7 +66,7 @@ export default function Login() {
                 <h2 className='text-black mt-[36px] text-6xl font-bold uppercase'>log in</h2>
                 <p className='text-[18px] font-semibold'>Enter your details to enter the site.</p>
                 {errorFlag && (
-                    <div className="mt-8 w-full md:w-[500px] h-[54px] bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                    <div className="mt-8 w-full md:w-[500px] h-[74px] bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
                         <strong className="font-bold">Invalid Credential!</strong>
                         <span className="block sm:inline"> Please check your email and password.</span>
                     </div>
