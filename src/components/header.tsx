@@ -10,8 +10,8 @@ import { cn } from '../lib/utils';
 import { AiOutlineShopping} from 'react-icons/ai';
 import { MdOutlineCancel} from 'react-icons/md';
 import { MdOutlinePerson} from 'react-icons/md';
-// import CartDrawer from './cartDrawer';
-// import { useAppContext } from '@/context';
+import CartDrawer from './cartDrawer';
+import { useAppContext } from '@/context';
 import { FaSearch } from 'react-icons/fa';
 
 const Header = () => {
@@ -20,31 +20,31 @@ const Header = () => {
   const scrolled = useScroll(5);
   const selectedLayout = useSelectedLayoutSegment();
 
-//   const {isOpen, setIsOpen, qty} = useAppContext();
+  const {isOpen, setIsOpen, qty} = useAppContext();
 
-//   const handleDrawer = () => {
-//     setIsOpen(!isOpen);
-//   };
+  const handleDrawer = () => {
+    setIsOpen(!isOpen);
+  };
 
-//   useEffect(() => {
-//     const handleEscKeyPress = (e:any) => {
-//       if (e.keyCode === 27 && isOpen) {
-//         setIsOpen(false);
-//       }
-//     };
+  useEffect(() => {
+    const handleEscKeyPress = (e:any) => {
+      if (e.keyCode === 27 && isOpen) {
+        setIsOpen(false);
+      }
+    };
 
-//     if (isOpen) {
-//       document.body.style.setProperty("overflow", "hidden");
-//     } else {
-//       document.body.style.removeProperty("overflow");
-//     }
+    if (isOpen) {
+      document.body.style.setProperty("overflow", "hidden");
+    } else {
+      document.body.style.removeProperty("overflow");
+    }
 
-//     document.addEventListener("keydown", handleEscKeyPress);
+    document.addEventListener("keydown", handleEscKeyPress);
 
-//     return () => {
-//       document.removeEventListener("keydown", handleEscKeyPress);
-//     };
-//   }, [isOpen, setIsOpen]);
+    return () => {
+      document.removeEventListener("keydown", handleEscKeyPress);
+    };
+  }, [isOpen, setIsOpen]);
 
   return (
     <main>
@@ -116,9 +116,9 @@ const Header = () => {
                           <MdOutlinePerson className='h-[22px] w-[22px]'/>
                       </Link>
                     </li>
-                    <button className='mt-[-3px]'>
+                    <button className='mt-[-3px]' onClick={handleDrawer}>
                       <AiOutlineShopping className='h-[22px] w-[22px]'/>
-                      <span className='absolute mt-[-28px] ml-[8px] text-[]'>0</span>
+                      <span className='absolute mt-[-28px] ml-[8px] text-[]'>{qty}</span>
                     </button>
                   </ul>
 
@@ -133,16 +133,16 @@ const Header = () => {
                 </div>
               </div>
             </div>
-            {/* {isOpen && (
+            {isOpen && (
         <div className="z-[9999999999] fixed inset-0 transition-opacity">
           <div
             onClick={() => setIsOpen(false)}
             className="absolute inset-0 bg-black opacity-50"
           ></div>
         </div>
-      )} */}
+      )}
 
-      {/* <aside
+      <aside
         className={`transform top-0 right-0 w-[740px] bg-[#f2f2f2] fixed h-full overflow-auto ease-in-out transition-all duration-700 z-[99999999991] ${
           !isOpen ? "translate-x-full" : "-translate-x-[0]"
         }`}
@@ -151,7 +151,7 @@ const Header = () => {
             <span className="relative z-10"><RxCross2 className='w-[40px] h-[40px]'/></span>
         </button>
         <CartDrawer/>
-      </aside> */}
+      </aside>
           </div>
     </main>
   );

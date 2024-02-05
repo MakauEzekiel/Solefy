@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { AppWrapper } from '@/context';
 import Header from "@/components/header";
 import HeaderMobile from "@/components/header-mobile";
 
@@ -19,9 +20,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className='bg-[#f2f2f2]'>
-        <Header/>
-        <HeaderMobile/>
-        {children}
+        <AppWrapper>
+          <Header />
+          <HeaderMobile />
+          {children}
+        </AppWrapper>
       </body>
 
     </html>
