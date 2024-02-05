@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import CategorySlider from "@/components/categorySlider";
 import CategoryBanner from "@/components/categoryBanner";
 import Footer from "@/components/footer";
+import ProductTrack from "@/components/productTrack";
 
 async function fetchSalesFromFirestore(collectionName: string) {
   const querySnapshot = await getDocs(collection(db, collectionName));
@@ -34,6 +35,7 @@ export default function Home() {
       <HeroBanner/>
       <CategorySlider womenSalesData={menSalesData} menSalesData={menSalesData}/>
       <CategoryBanner/>
+      <ProductTrack data={menSalesData}/>
       <Footer/>
     </main>
   );
