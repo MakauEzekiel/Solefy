@@ -27,7 +27,7 @@ const ProductList = ({data}:any) => {
         {/* <div className='h-[70vh] grid hidden md:flex items-center md:grid-cols-2 grid-cols-1 w-full mx-auto md:pl-16 md:pr-16 pt-16 sm:pl-8 sm:pr-8'>
             
         </div> */}
-        <div className='w-full sm:p-16 sm:pt-24 pl-4 pr-4 pt-8'>
+        <div className='w-full sm:p-16 sm:pt-24 pl-4 pr-4 pt-32'>
             <div className='grid gap-4 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 '>
             {data.map((sale:any) => (
                 <React.Fragment key={sale.product_id}>

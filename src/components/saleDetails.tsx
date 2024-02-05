@@ -45,7 +45,7 @@ const SaleDetails = ({saleData}:any) => {
   }, [isOpen]);
   return (
     <Fragment>
-      <div className='block w-full bg-[#f2f2f2]'>
+      <div className='block w-full bg-[#f2f2f2] sm:col-span-1 col-span-2'>
                 <h2 className='text-black text-3xl font-bold'>{saleData.name}</h2>
                 <p className='text-1xl font-semibold text-gray-500'>{saleData.category}</p>
                 <div className='flex w-full'>

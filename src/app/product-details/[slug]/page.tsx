@@ -31,7 +31,7 @@ const ProductDetails = async ({params}:any) => {
 
   return (
     <div className='w-full bg-[#f2f2f2] '>
-        <div className='w-full mt-[107px] grid-cols-3 grid gap-8 pl-[2px] pt-8 pb-16 bg-[#f2f2f2]'>
+        <div className='w-full mt-[107px] sm:grid-cols-3 grid-cols-2 grid sm:gap-8 pl-[2px] pt-8 pb-16 bg-[#f2f2f2]'>
              <SaleView saleData = {currentSaleData}/>
              <SaleDetails saleData = {currentSaleData}/>
         </div>
