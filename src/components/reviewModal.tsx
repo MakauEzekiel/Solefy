@@ -6,7 +6,7 @@ import StarRate from './starRate';
 const ReviewModal = ({isVisible, onClose}:any) => {
   if(!isVisible) return null;
   return (
-    <div className='z-[999999999999999999999999999999999999999999999999999999] fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm justify-center items-center flex'>
+    <div className='z-[99999999999999999999999999999999999999999999999999999999999999999999] fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm justify-center items-center flex'>
       <div className='sm:w-[600px] w-[90%] flex flex-col'>
         <button className='text-white text-xl place-self-end' onClick={() => onClose()}>
           x
