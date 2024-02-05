@@ -61,7 +61,7 @@ export default function Login() {
   };
   return (
     <div className='block w-[100%] mt-[107px] min-h-[100vh]'>
-        <div className='w-full grid grid-cols-2 grid gap-8 p-4'>
+        <div className='w-full grid md:grid-cols-2 md:gap-8 p-4'>
             <div className=' w-full h-full'>
                 <h2 className='text-black mt-[36px] text-6xl font-bold uppercase'>log in</h2>
                 <p className='text-[18px] font-semibold'>Enter your details to enter the site.</p>
@@ -72,7 +72,7 @@ export default function Login() {
                     </div>
                 )}
 
-                <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6 max-w-[500px] mt-8 " action="#">
+                <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6 w-full md:max-w-[500px] mt-8 " action="#">
                     <div>
                         <label htmlFor="email" className="block mb-2 text-sm font-medium text-black">Your email</label>
                         <input type="email" name="email" id="email" onChange={e => setEmail(e.target.value)} className="h-[54px] border border-top-dotted bg-white text-gray-900 sm:text-sm focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Email Address"/>
