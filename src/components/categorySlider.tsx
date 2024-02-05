@@ -32,7 +32,7 @@ const CategorySlider = ({womenSalesData, menSalesData}:any) => {
       className: "center",
       centerMode: true,
       infinite: true,
-      centerPadding: "60px",
+      centerPadding: "30px",
       slidesToShow: 3,
       speed: 500,
       responsive: [
