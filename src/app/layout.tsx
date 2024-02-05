@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header";
+import HeaderMobile from "@/components/header-mobile";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,6 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <body className='bg-[#f2f2f2]'>
         <Header/>
+        <HeaderMobile/>
         {children}
       </body>
 
