@@ -56,7 +56,7 @@ export default function Signup() {
 
   return (
     <div className='block w-[100%] mt-[107px] min-h-[100vh]'>
-        <div className='w-full grid grid-cols-2 grid gap-8 p-4'>
+        <div className='w-full grid md:grid-cols-2 md:gap-8 p-4'>
             <div className=' w-full h-full'>
                 <h2 className='text-black uppercase text-6xl font-bold mt-[36px]'>log in</h2>
                 <p>Do you already have an account? Enter your details to log in.</p>
@@ -71,12 +71,12 @@ export default function Signup() {
                     <h2 className='text-black mt-[36px] text-6xl font-bold uppercase'>Sign in</h2>
                     <p className='text-[18px] font-semibold'>Enter your details to create an account.</p>
                     {errorFlag && (
-                        <div className="mt-8 w-[500px] h-[54px] bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                        <div className="mt-8 w-full md:w-[500px] h-[54px] bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
                             <strong className="font-bold">Email already in use!</strong>
                             <span className="block sm:inline"></span>
                         </div>
                     )}
-                    <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6 max-w-[500px] mt-8 " action="#">
+                    <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6 w-full md:max-w-[500px] mt-8 " action="#">
                         <div>
                             <label htmlFor="name" className="block mb-2 text-sm font-medium text-black">Name</label>
                             <input type="text" name="name" id="name" onChange={e => setName(e.target.value)} className="h-[54px] border border-top-dotted bg-white text-gray-900 sm:text-sm focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Name"/>
