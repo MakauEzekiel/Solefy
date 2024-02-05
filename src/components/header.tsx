@@ -84,7 +84,7 @@ const Header = () => {
                   'letter-spacing-4 text-[#000000] text-[22px] font-black transition-all duration-1000 ease-in-out ': scrolled,
                   'letter-spacing-4 bg-[#f2f2f2] text-[#000000] text-[22px] font-black transition-all duration-1000 ease-in-out': selectedLayout,
                 },
-              )}>U B A C</h2>
+              )}>S O L E F Y</h2>
                 </Link>
               </div>
 
