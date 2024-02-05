@@ -21,7 +21,7 @@ const SaleView = ({saleData}:any) => {
 
     return (
         <div className='w-full col-span-2'>
-            <div className='col-span-2 w-full columns-2 gap-1 space-y-1 mx-auto p-5 bg-[#f2f2f2]'  ref={imagesDivRef}>
+            <div className='col-span-2 w-full columns-2 gap-1 space-y-1 mx-auto sm:p-5 bg-[#f2f2f2]'  ref={imagesDivRef}>
                 {imagesToShow.map((image:any, index: string | number) => (
                     <div className='w-full bg-[#f2f2f2]' key={image}>
                         <Image src={currentSaleData.images[index]} alt="" priority unoptimized placeholder='blur' blurDataURL={currentSaleData.base64} width={100} height={120} loading="eager" className='w-full object-cover cursor-pointer'/>
