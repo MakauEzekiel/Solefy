@@ -57,8 +57,8 @@ const SaleDetails = ({saleData}:any) => {
                     <p className='pl-[8px] font-semibold text-1xl'>660 Reviews</p>
                 </div>
                 <div className='flex w-full'>
-                  <button className='bg-black text-white py-4' onClick={() => setShowModel(true)}>
-                    Write a review
+                  <button className='bg-black text-white' onClick={() => setShowModel(true)}>
+                    write a review
                   </button>
                 </div>
                 <p className='text-2xl font-bold mt-8'>R{saleData.price}</p>
