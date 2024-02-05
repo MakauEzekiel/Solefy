@@ -2,9 +2,9 @@
 
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import newsOne from '@/asserts/newsOne.avif';
-import newsTwo from '@/asserts/newsThree.avif';
-import newsThree from '@/asserts/newsTwo.avif';
+import newsOne from '@/assets/newsOne.avif';
+import newsTwo from '@/assets/newsThree.avif';
+import newsThree from '@/assets/newsTwo.avif';
 import SliderDescription from './sliderDescription';
 import { motion } from "framer-motion";
 
