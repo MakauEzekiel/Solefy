@@ -119,7 +119,7 @@ const SaleDetails = ({saleData}:any) => {
                 )}
 
         <aside
-            className={`transform top-0 right-0 w-[640px] bg-[#f2f2f2] fixed h-full overflow-auto ease-in-out transition-all duration-700 z-[99999999991] ${
+            className={`transform top-0 right-0 w-full sm:w-[640px] bg-[#f2f2f2] fixed h-full overflow-auto ease-in-out transition-all duration-700 z-[99999999991] ${
             (!isOpen) ? "translate-x-full" : "-translate-x-[0]"
             }`}
         >

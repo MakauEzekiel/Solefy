@@ -30,7 +30,7 @@ const ProductTrack = ({data}:any) => {
         className: "center",
         centerMode: true,
         infinite: true,
-        centerPadding: "60px",
+        centerPadding: "30px",
         autoplay: true,
         cssEase: "linear",
         slidesToShow: 3,
