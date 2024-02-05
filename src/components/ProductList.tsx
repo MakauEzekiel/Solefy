@@ -34,7 +34,7 @@ const ProductList = ({data}:any) => {
                     {(currentSaleCategory === 0) && (
                         <>
                         {setCurrentSaleCategory(3)}
-                        <div className='hidden sm:flex col-span-2 text-black min-w-[100px] overflow-hidden'>
+                        <div className='hidden sm:block col-span-2 text-black min-w-[100px] overflow-hidden'>
                             <Link href={`/product-details/${sale.product_id}`}>
                                 <Image src={sale.image} alt="" unoptimized priority placeholder='blur' blurDataURL={sale.base64} loading="eager" width={100} height={100} className='w-full md:max-h-[448px] object-cover hover:scale-105 transform transition-transform ease-in-out duration-300 cursor-pointer'/>
                             </Link>
