@@ -5,8 +5,8 @@ import Footer from "@/components/footer";
 import { db } from '../../firebaseConfig';
 import { collection, getDocs} from 'firebase/firestore';
 import Image from "next/image";
-import bgMen from '@/asserts/menBgOne.jpg'
-import bgWomen from '@/asserts/womenBgOne.jpg'
+import bgMen from '@/assets/menBgOne.jpg'
+import bgWomen from '@/assets/womenBgOne.jpg'
 
 async function fetchSalesFromFirestore(collectionName: string) {
     const querySnapshot = await getDocs(collection(db, collectionName));
