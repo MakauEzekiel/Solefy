@@ -73,7 +73,7 @@ const ProductTrack = ({salesData}:any) => {
               {salesData.map((sale:any) => (
                 sale.saleImages.map((imageGroup:any, index:any) => (
                   <div className="min-w-[100px] overflow-hidden p-2" key={sale.name}>
-                    <Link href={`/product-details?product_id=${encodeURIComponent(sale.product_id)}&color=${encodeURIComponent(imageGroup.color.color)}`}>
+                    <Link href={`/detail/${encodeURIComponent(sale.product_id)}-${encodeURIComponent(imageGroup.color.color)}`}>
                       <Image
                         src={imageGroup.imagesUrls[1]}
                         alt={sale.name}
