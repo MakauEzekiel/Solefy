@@ -23,7 +23,7 @@ export default function Search() {
                 setLoading(false);
             }
             else {
-                const collectionRef = collection(db, 'men_sales');
+                const collectionRef = collection(db, 'sales');
                 const startAtName = SearchText.toLowerCase();
                 const endAtName = startAtName + '\uf8ff';
                 const q = query(collectionRef, orderBy("name"), startAt(startAtName), endAt(endAtName));
@@ -73,7 +73,7 @@ export default function Search() {
                 </button>
             </form>
             <div className='w-full mt-[-120px] ml-[-8px]'>
-                <ProductList data={Sales} />
+                <ProductList salesData={Sales} />
             </div>
         </div>
         <Footer/>
