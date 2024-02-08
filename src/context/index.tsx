@@ -97,18 +97,22 @@ export function AppWrapper ({ children } : {
     }, [user]);
     
 
-    const onAdd = (product: any, quantity: any) => {
-        const existingProduct = cartItems.find((item) => item.id === product.id);
+    const onAdd = (product: any, quantity: any, color: any) => {
+        const existingProduct = cartItems.find((item) => (item.id === product.id && item.color === color));
+        if(existingProduct) {
+          console.log("color: "+existingProduct.color);
+          console.log("new color: "+color);
+        }
       
-        if (existingProduct) {
+        if (existingProduct && existingProduct.color === color) {
           setCartItems(
             cartItems.map((item) =>
-              item.id === product.id ? { ...item, quantity: item.quantity + quantity, totalAmount: item.price * (item.quantity + quantity) } : item
+              item.id === product.id ? { ...item, quantity: item.quantity + quantity, color: color, totalAmount: item.price * (item.quantity + quantity) } : item
             )
           );
         } else {
           const totalAmount = product.price * quantity;
-          setCartItems([...cartItems, { ...product, quantity, totalAmount }]);
+          setCartItems([...cartItems, { ...product, quantity, color, totalAmount }]);
         }
         let totalPrice = 0;
         cartItems.map((sale:any) => {
@@ -138,8 +142,10 @@ export function AppWrapper ({ children } : {
             settotalPrice(totalPrice);
       }
 
-      const onRemove = (product_id: any) => {
-        const newCartItems = cartItems.filter((item:any) => item.product_id !== product_id);
+      const onRemove = (product_id: any, color: any) => {
+        console.log(cartItems);
+        const newCartItems = cartItems.filter((item:any) => !(item.product_id === product_id && item.color === color));
+        console.log(newCartItems);
         setCartItems(newCartItems);
         setqty(cartItems.length);
         let totalPrice = 0;
@@ -148,8 +154,6 @@ export function AppWrapper ({ children } : {
         })
         settotalPrice(totalPrice);
       }
-      
-      
 
     const incQty = () => {
         setqty((prevQty)  => prevQty + 1);

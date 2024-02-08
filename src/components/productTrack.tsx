@@ -7,7 +7,7 @@ import "slick-carousel/slick/slick-theme.css";
 import React, { useEffect, useState } from 'react'
 import Slider from 'react-slick'
 
-const ProductTrack = ({data}:any) => {
+const ProductTrack = ({salesData}:any) => {
 //   const [loading, setLoading] = useState(true);
   
 //   useEffect(() => {
@@ -69,23 +69,33 @@ const ProductTrack = ({data}:any) => {
     <div className='border-b border-gray-400 pb-32 pt-4 md:pl-24 pl-8 overflow-hidden md:pr-24 pr-8'>
         <div className='w-full justify-center items-center text-center'><h2 className='text-4xl font-bold uppercase'>Popular Sales</h2></div>
         <div className='w-full mt-8'>
-        <Slider {...settings} className=' ml-0 w-full'>
-            {data.map((sale:any) => (
-                <div className='min-w-[100px] overflow-hidden p-2' key={sale.product_id}>
-                  <Link href={`/product-details/${sale.product_id}`}>
-                    <Image src={sale.images[0]} alt="" placeholder='blur' blurDataURL={sale.base64} priority unoptimized loading="eager" className='w-full hover:scale-105 transform transition-transform ease-in-out duration-300 cursor-pointer' width={100} height={100}/>
-                      <div className=''>
-                          <div className='font-bold'>
-                              <p className='uppercase text-[16px] mt-[16px]'>{sale.name}</p>
-                          </div>
-                          <p className='text-gray-400 text-base text-[14px]'>{sale.category}</p>
-                          <p className='font-bold text-xl mt-2'>R{sale.price}</p>
+          <Slider {...settings} className="ml-0 w-full">
+              {salesData.map((sale:any) => (
+                sale.saleImages.map((imageGroup:any, index:any) => (
+                  <div className="min-w-[100px] overflow-hidden p-2" key={sale.name}>
+                    <Link href={`/product-details?product_id=${encodeURIComponent(sale.product_id)}&color=${encodeURIComponent(imageGroup.color.color)}`}>
+                      <Image
+                        src={imageGroup.imagesUrls[1]}
+                        alt={sale.name}
+                        unoptimized
+                        priority
+                        className="w-full hover:scale-105 transform transition-transform ease-in-out duration-300 cursor-pointer"
+                        width={100}
+                        height={120}
+                        loading="eager"
+                      />
+                      <div>
+                        <div className="font-bold">
+                          <p className="uppercase text-[16px] mt-[16px]">{sale.name}</p>
+                        </div>
+                        <p className="text-gray-400 text-base text-[14px]">{sale.material}</p>
+                        <p className="font-bold text-xl mt-2">R{sale.price}</p>
                       </div>
-                  </Link>
-                </div>
-            ))}
-        </Slider>
-
+                    </Link>
+                  </div>
+                ))
+              ))}
+          </Slider>
       </div>
     </div>
   )

@@ -21,13 +21,13 @@ async function fetchSalesFromFirestore(collectionName: string) {
 }
 
 export default function Home() {
-  const [menSalesData, setmenSalesData] = useState([]);
+  const [SalesData, setSalesData] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
-      const menData = await fetchSalesFromFirestore('men_sales');
+      const Data = await fetchSalesFromFirestore('sales');
       
-      setmenSalesData(menData);
+      setSalesData(Data);
     }
     fetchData();
   }, [])
@@ -35,9 +35,9 @@ export default function Home() {
   return (
     <main className='block w-[100%]'>
       <HeroBanner/>
-      <CategorySlider womenSalesData={menSalesData} menSalesData={menSalesData}/>
+      <CategorySlider salesData={SalesData}/>
       <CategoryBanner/>
-      <ProductTrack data={menSalesData}/>
+      <ProductTrack salesData={SalesData}/>
       <main className="hidden md:block bg-gradient-to-r from-[#f2f2f2] to-[#f2f2f2] w-full min-h-screen mx-auto grid place-items-center">
         <h2 className='uppercase text-4xl font-bold'>NEWS</h2>
         <Slider/>

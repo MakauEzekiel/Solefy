@@ -25,8 +25,8 @@ export default function Products ({params}:any) {
 
     useEffect(() => {
         async function fetchData() {
-          const womenData = await fetchSalesFromFirestore('women_sales');
-          const menData = await fetchSalesFromFirestore('men_sales');
+          const womenData = await fetchSalesFromFirestore('sales');
+          const menData = await fetchSalesFromFirestore('sales');
           
           setwomenSalesData(womenData);
           setmenSalesData(menData);
@@ -60,7 +60,7 @@ export default function Products ({params}:any) {
                 <h2 className="uppercase text-white text-6xl font-bold">{category} SALES</h2>
             </div>
           </div>
-            <ProductList data={data}/>
+            <ProductList salesData={data}/>
             <Footer/>
         </div>
     )
