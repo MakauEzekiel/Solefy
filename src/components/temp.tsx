@@ -10,7 +10,7 @@ import { useAppContext } from '@/context';
 async function UdpateColor(saleData: any, color: any) {
     for(let i = 0; i < saleData.saleImages.length; i++) {
         if(saleData.saleImages[i].color.color === color) {
-            return saleData.saleImages[i].imagesUrls;
+            return saleData.saleImages[i];
         }
     }
     return null;
@@ -18,7 +18,8 @@ async function UdpateColor(saleData: any, color: any) {
 
 const Temp = ({saleData, color}:any) => {
     const [CurrentImages, setCurrentImages] = useState<any>(null);
-    const [AvailableColors, setAvailableColors] = useState<any>(null)
+    const [CurrentProductId, setCurrentProductId] = useState(null);
+    const [AvailableColors, setAvailableColors] = useState<any>(null);
     const [SelectedColor, setSelectedColor] = useState(null);
     const [selectedSize, setSelectedSize] = useState<any>(null);
     const [showAll, setShowAll] = useState(false);
@@ -41,7 +42,8 @@ const Temp = ({saleData, color}:any) => {
             }
 
             // console.log('colors: '+availableColors[1].color);
-            setCurrentImages(current);
+            setCurrentImages(current.imagesUrls);
+            setCurrentProductId(current.id);
             setAvailableColors(availableColorsArray);
             setSelectedColor(color);
             setSelectedSize(5);
@@ -52,7 +54,8 @@ const Temp = ({saleData, color}:any) => {
 
     const handleColorClick = async (color:any) => {
         const current = await UdpateColor(saleData, color);
-        setCurrentImages(current);
+        setCurrentImages(current.imagesUrls);
+        setCurrentProductId(current.id);
         setSelectedColor(color);
     }
     const availableSizes = [5, 6, 7, 8, 9, 10, 11, 12];
@@ -190,7 +193,7 @@ const Temp = ({saleData, color}:any) => {
             <hr className='border-gray-300 mt-8'/>
             <p className='text-center text-[14px] font-semibold text-gray-600 mt-8'>Delivery between February 10 and February 15</p>
             <div className='w-full justify-center items-center text-center pt-4'>
-                <button onClick={() => onAdd(saleData, 1, SelectedColor)} className="group relative rounded-full min-h-[64px] w-[80%] overflow-hidden border border-white bg-black text-white transition-all before:absolute before:left-0 before:top-0 before:h-0 before:w-1/4 before:bg-[#f2f2f2] before:duration-500 after:absolute after:bottom-0 after:right-0 after:h-0 after:w-1/4 after:bg-[#f2f2f2] after:duration-500 hover:text-black hover:before:h-full hover:after:h-full">
+                <button onClick={() => onAdd(saleData, CurrentProductId, 1, SelectedColor)} className="group relative rounded-full min-h-[64px] w-[80%] overflow-hidden border border-white bg-black text-white transition-all before:absolute before:left-0 before:top-0 before:h-0 before:w-1/4 before:bg-[#f2f2f2] before:duration-500 after:absolute after:bottom-0 after:right-0 after:h-0 after:w-1/4 after:bg-[#f2f2f2] after:duration-500 hover:text-black hover:before:h-full hover:after:h-full">
                 <span className="top-0 flex h-full w-full items-center justify-center before:absolute before:bottom-0 before:left-1/4 before:z-0 before:h-0 before:w-1/4 before:bg-[#f2f2f2] before:duration-500 after:absolute after:right-1/4 after:top-0 after:z-0 after:h-0 after:w-1/4 after:bg-[#f2f2f2] after:duration-500 hover:text-black group-hover:before:h-full group-hover:after:h-full"></span>
                 <span className="relative bottom-0 left-0 right-0 top-0 z-10 flex h-full w-full items-center justify-center group-hover:text-black text-[18px] font-semibold">Add to cart</span>
                 </button>

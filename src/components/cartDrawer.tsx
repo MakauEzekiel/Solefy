@@ -31,11 +31,11 @@ const CartDrawer = () => {
                             <div className='hidden sm:block min-w-[100px]'>
                             <div className="py-2 px-3 inline-block bg-[#f2f2f2]" data-hs-input-number>
                               <div className="flex items-center gap-x-1.5">
-                              <button onClick={() => toggleCartItemQuantity(sale.product_id, 'dec')} className="text-red mr-[0px] hover:before:bg-redborder-black relative rounded-full h-[32px] w-[32px] overflow-hidden bg-[#f2f2f2] px-3 text-black shadow-2xl transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-black before:transition-all before:duration-500 hover:text-white hover:shadow-black hover:before:left-0 hover:before:w-full">
+                              <button onClick={() => toggleCartItemQuantity(imageGroup.id, 'dec')} className="text-red mr-[0px] hover:before:bg-redborder-black relative rounded-full h-[32px] w-[32px] overflow-hidden bg-[#f2f2f2] px-3 text-black shadow-2xl transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-black before:transition-all before:duration-500 hover:text-white hover:shadow-black hover:before:left-0 hover:before:w-full">
                                 <span className="relative z-10"><FaMinus className='w-[10px] h-[10px]'/></span>
                               </button>
                                 <input className="p-0 w-4 bg-transparent border-0 text-gray-800 text-center focus:ring-0 dark:text-black" type="text" value={sale.quantity} data-hs-input-number-input readOnly/>
-                                <button onClick={() => toggleCartItemQuantity(sale.product_id, 'inc')} className="text-red mr-[0px] hover:before:bg-redborder-black relative rounded-full h-[32px] w-[32px] overflow-hidden bg-[#f2f2f2] px-3 text-black shadow-2xl transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-black before:transition-all before:duration-500 hover:text-white hover:shadow-black hover:before:left-0 hover:before:w-full">
+                                <button onClick={() => toggleCartItemQuantity(imageGroup.id, 'inc')} className="text-red mr-[0px] hover:before:bg-redborder-black relative rounded-full h-[32px] w-[32px] overflow-hidden bg-[#f2f2f2] px-3 text-black shadow-2xl transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-black before:transition-all before:duration-500 hover:text-white hover:shadow-black hover:before:left-0 hover:before:w-full">
                                   <span className="relative z-10"><FaPlus className='w-[10px] h-[10px]'/></span>
                                 </button>
                               </div>
@@ -45,11 +45,11 @@ const CartDrawer = () => {
                             <div className='sm:hidden block min-w-[100px]'>
                             <div className="py-2 px-3 inline-block bg-[#f2f2f2]" data-hs-input-number>
                               <div className="flex items-center gap-x-1.5">
-                              <button onClick={() => toggleCartItemQuantity(sale.product_id, 'dec')} className="text-red mr-[0px] hover:before:bg-redborder-black relative rounded-full h-[32px] w-[32px] overflow-hidden bg-[#f2f2f2] px-3 text-black shadow-2xl transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-black before:transition-all before:duration-500 hover:text-white hover:shadow-black hover:before:left-0 hover:before:w-full">
+                              <button onClick={() => toggleCartItemQuantity(imageGroup.id, 'dec')} className="text-red mr-[0px] hover:before:bg-redborder-black relative rounded-full h-[32px] w-[32px] overflow-hidden bg-[#f2f2f2] px-3 text-black shadow-2xl transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-black before:transition-all before:duration-500 hover:text-white hover:shadow-black hover:before:left-0 hover:before:w-full">
                                 <span className="relative z-10"><FaMinus className='w-[10px] h-[10px]'/></span>
                               </button>
                                 <input className="p-0 w-4 bg-transparent border-0 text-gray-800 text-center focus:ring-0 dark:text-black" type="text" value={sale.quantity} data-hs-input-number-input readOnly/>
-                                <button onClick={() => toggleCartItemQuantity(sale.product_id, 'inc')} className="text-red mr-[0px] hover:before:bg-redborder-black relative rounded-full h-[32px] w-[32px] overflow-hidden bg-[#f2f2f2] px-3 text-black shadow-2xl transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-black before:transition-all before:duration-500 hover:text-white hover:shadow-black hover:before:left-0 hover:before:w-full">
+                                <button onClick={() => toggleCartItemQuantity(imageGroup.id, 'inc')} className="text-red mr-[0px] hover:before:bg-redborder-black relative rounded-full h-[32px] w-[32px] overflow-hidden bg-[#f2f2f2] px-3 text-black shadow-2xl transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-black before:transition-all before:duration-500 hover:text-white hover:shadow-black hover:before:left-0 hover:before:w-full">
                                   <span className="relative z-10"><FaPlus className='w-[10px] h-[10px]'/></span>
                                 </button>
                               </div>
@@ -58,12 +58,12 @@ const CartDrawer = () => {
                               <p className='text-center text-2xl font-bold'>R{sale.totalAmount}</p>
                             </div>
                             <div className='sm:block hidden pr-0'>
-                              <button onClick={() => onRemove(sale.product_id, sale.color)} className="pl-6 pr-6 h-[128px] bg-[#f2f2f2] w-full text-black right-0 top-0 relative overflow-hidden bg-[#f2f2f2] text-black transition-all before:absolute before:left-0 before:top-0 before:h-full before:w-0 before:duration-500 after:absolute after:right-0 after:top-0 after:h-full after:w-0 after:duration-500 hover:text-white hover:shadow-black hover:before:w-2/4 hover:before:bg-black hover:after:w-2/4 hover:after:bg-black">
+                              <button onClick={() => onRemove(imageGroup.id)} className="pl-6 pr-6 h-[128px] bg-[#f2f2f2] w-full text-black right-0 top-0 relative overflow-hidden bg-[#f2f2f2] text-black transition-all before:absolute before:left-0 before:top-0 before:h-full before:w-0 before:duration-500 after:absolute after:right-0 after:top-0 after:h-full after:w-0 after:duration-500 hover:text-white hover:shadow-black hover:before:w-2/4 hover:before:bg-black hover:after:w-2/4 hover:after:bg-black">
                                 <span className="relative z-10 uppercase">delete</span>
                               </button>
                             </div>
                             <div className='sm:hidden block pr-0'>
-                              <button onClick={() => onRemove(sale.product_id)} className="pl-6 pr-6 h-[128px] bg-[#f2f2f2] w-full text-black right-0 top-0 relative overflow-hidden bg-[#f2f2f2] text-black transition-all before:absolute before:left-0 before:top-0 before:h-full before:w-0 before:duration-500 after:absolute after:right-0 after:top-0 after:h-full after:w-0 after:duration-500 hover:text-white hover:shadow-black hover:before:w-2/4 hover:before:bg-black hover:after:w-2/4 hover:after:bg-black">
+                              <button onClick={() => onRemove(imageGroup.id)} className="pl-6 pr-6 h-[128px] bg-[#f2f2f2] w-full text-black right-0 top-0 relative overflow-hidden bg-[#f2f2f2] text-black transition-all before:absolute before:left-0 before:top-0 before:h-full before:w-0 before:duration-500 after:absolute after:right-0 after:top-0 after:h-full after:w-0 after:duration-500 hover:text-white hover:shadow-black hover:before:w-2/4 hover:before:bg-black hover:after:w-2/4 hover:after:bg-black">
                                   <span className="relative z-10"><RxCross2 className='w-[25px] h-[25px]'/></span>
                               </button>
                             </div>
