@@ -107,8 +107,28 @@ const Temp = ({saleData, color}:any) => {
     infinite: true,
     speed: 500,
     slidesToShow: 1,
-    slidesToScroll: 1
-    
+    slidesToScroll: 1,
+    appendDots: (dots:any) => (
+      <div
+        style={{
+          borderRadius: "10px",
+          padding: "10px"
+        }}
+      >
+        <ul style={{ marginBottom: "22px" }}> {dots} </ul>
+      </div>
+    ),
+    customPaging: (i:any) => (
+      <div
+        style={{
+          width: "30px",
+          color: "black",
+          border: "1px black solid"
+        }}
+      >
+        {i + 1}
+      </div>
+    )
     };
     
   return (
