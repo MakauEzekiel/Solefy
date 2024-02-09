@@ -6,6 +6,9 @@ import { FaPlus } from 'react-icons/fa';
 import { RxCross2 } from 'react-icons/rx';
 import ReviewModal from './reviewModal';
 import { useAppContext } from '@/context';
+import Slider from 'react-slick';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 async function UdpateColor(saleData: any, color: any) {
     for(let i = 0; i < saleData.saleImages.length; i++) {
@@ -98,11 +101,20 @@ const Temp = ({saleData, color}:any) => {
       document.removeEventListener("keydown", handleEscKeyPress);
     };
   }, [isOpen]);
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1
+    
+    };
     
   return (
     <React.Fragment>
         <div className='w-full col-span-2 mr-[150px]'>
-            <div className='w-full grid grid-cols-2 gap-2' ref={imagesDivRef}>
+            <div className='hidden md:block w-full grid grid-cols-2 gap-2' ref={imagesDivRef}>
                 {CurrentImages && (
                     <>
                         {imagesToShow.map((image:any, index: number) => (
@@ -126,7 +138,20 @@ const Temp = ({saleData, color}:any) => {
                     </>
                 )}
             </div>
-            <div className='w-full justify-center items-center text-center mt-[-24px]'>
+            <div className='md:hidden overflow-hidden mb-8'>
+              {CurrentImages && (
+                  <div className="slider-container">
+                    <Slider {...settings}>
+                      {CurrentImages.slice(2).map((image:any, index: number) => (
+                            <div key={image}>
+                            <Image src={image} alt='' className='w-full' width={100} height={100} unoptimized priority placeholder='blur' blurDataURL={CurrentBase64[1]} loading="eager"/>
+                          </div>
+                      ))}
+                    </Slider>
+                </div>
+              )}
+            </div>
+            <div className='hidden md:block w-full justify-center items-center text-center mt-[-24px]'>
             {showAll ? 
                     <button onClick={handleShowLess} className="relative bg-white h-12 w-40 overflow-hidden border border-gray-600 text-gray-600 shadow-2xl transition-all duration-200 before:absolute before:bottom-0 before:left-0 before:right-0 before:top-0 before:m-auto before:h-0 before:w-0 before:rounded-sm before:bg-gray-600 before:duration-300 before:ease-out hover:text-white hover:shadow-gray-600 hover:before:h-40 hover:before:w-40 hover:before:opacity-80">
                         <span className="relative z-10">Show Less</span>

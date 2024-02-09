@@ -20,7 +20,7 @@ const Details = async ({params}:any) => {
   const currentSaleData = await fetchProductFromFirestore('sales', productId);
   return (
     <div className='w-full bg-[#f2f2f2] '>
-        <div className='w-full mt-[107px] sm:grid-cols-3 grid-cols-2 grid sm:gap-8 sm:pl-[2px] pt-8 pb-16 bg-[#f2f2f2]'>
+        <div className='w-full md:mt-[107px] md:grid-cols-3 grid-cols-1 grid md:gap-8 sm:pl-[2px] pt-8 pb-16 bg-[#f2f2f2]'>
              <Temp saleData={currentSaleData} color={productColor} />
         </div>
         <div className='w-full'>

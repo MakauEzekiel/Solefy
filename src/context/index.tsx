@@ -54,9 +54,8 @@ export function AppWrapper ({ children } : {
         setflag(1);
         setqty(cartItems.length);
       });
-      // This will ensure the effect only runs once after the initial render
       return () => unsubscribe();
-    }, []); // Empty dependency array
+    }, []);
     
 
     useEffect(() => {
