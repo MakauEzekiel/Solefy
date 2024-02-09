@@ -6,25 +6,18 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import React, { useEffect, useState } from 'react'
 import Slider from 'react-slick'
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css'
 
 const ProductTrack = ({salesData}:any) => {
-//   const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
   
-//   useEffect(() => {
-//     if (data.length > 0) {
-//       setTimeout(() => {
-//         setLoading(false);
-//       }, 2000);
-//     }}, [data.length]);
-//   if (loading) {
-//     return <main className="z-[999999999999999999] w-[100%] absolute  text-center item-center justify-center top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-4">
-//     <div className="w-full h-full">
-//         <div className="flex justify-center items-center">
-//             <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-black"></div>
-//         </div>
-//     </div>
-// </main>;
-//   }
+  useEffect(() => {
+    if (salesData.length > 0 || salesData.length > 0) {
+      setTimeout(() => {
+        setLoading(false);
+      }, 2000);
+    }}, [salesData.length]);
 
     const settings = {
         className: "center",
@@ -64,6 +57,49 @@ const ProductTrack = ({salesData}:any) => {
   
         ],
       };
+
+      if (loading) {
+        return <div className="border-b border-gray-400 pb-32 pt-4 md:pl-24 pl-8 overflow-hidden md:pr-24 pr-8">
+          <Slider {...settings} className=" ml-0 w-full">
+              <div className='p-4'>
+              <Skeleton containerClassName='w-full' height={400} />
+              <Skeleton containerClassName='w-full' height={30} />
+              <Skeleton width={150} height={10} />
+              <Skeleton width={100} height={30} />
+              </div>
+              <div className='p-4'>
+              <Skeleton containerClassName='w-full' height={400} />
+              <Skeleton containerClassName='w-full' height={30} />
+              <Skeleton width={150} height={10} />
+              <Skeleton width={100} height={30} />
+              </div>
+              <div className='p-4'>
+              <Skeleton containerClassName='w-full' height={400} />
+              <Skeleton containerClassName='w-full' height={30} />
+              <Skeleton width={150} height={10} />
+              <Skeleton width={100} height={30} />
+              </div>
+              <div className='p-4'>
+              <Skeleton containerClassName='w-full' height={400} />
+              <Skeleton containerClassName='w-full' height={30} />
+              <Skeleton width={150} height={10} />
+              <Skeleton width={100} height={30} />
+              </div>
+              <div className='p-4'>
+              <Skeleton containerClassName='w-full' height={400} />
+              <Skeleton containerClassName='w-full' height={30} />
+              <Skeleton width={150} height={10} />
+              <Skeleton width={100} height={30} />
+              </div>
+              <div className='p-4'>
+              <Skeleton containerClassName='w-full' height={400} />
+              <Skeleton containerClassName='w-full' height={30} />
+              <Skeleton width={150} height={10} />
+              <Skeleton width={100} height={30} />
+              </div>
+          </Slider>
+    </div>;
+      }
     
   return (
     <div className='border-b border-gray-400 pb-32 pt-4 md:pl-24 pl-8 overflow-hidden md:pr-24 pr-8'>

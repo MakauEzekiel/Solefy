@@ -3,6 +3,7 @@
 import { createContext, useContext, useState, useEffect} from 'react';
 import { db, auth } from '@/app/firebaseConfig';
 import { doc, getDoc, setDoc } from "firebase/firestore";
+import { toast } from 'react-hot-toast';
 
 const AppContext = createContext<any>(undefined);
 
@@ -114,6 +115,7 @@ export function AppWrapper ({ children } : {
         cartItems.map((sale:any) => {
           totalPrice += sale.totalAmount;
         })
+        toast.success(`${product.name} added to the cart.`);
         settotalPrice(totalPrice);
         setIsCartOpen(true);
       }

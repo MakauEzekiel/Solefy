@@ -4,6 +4,8 @@ import "./globals.css";
 import { AppWrapper } from '@/context';
 import Header from "@/components/header";
 import HeaderMobile from "@/components/header-mobile";
+import { Toaster } from 'react-hot-toast';
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,6 +23,7 @@ export default function RootLayout({
     <html lang="en">
       <body className='bg-[#f2f2f2]'>
         <AppWrapper>
+          <Toaster />
           <Header />
           <HeaderMobile />
           {children}
