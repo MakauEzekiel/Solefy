@@ -79,6 +79,8 @@ const ProductTrack = ({salesData}:any) => {
                         alt={sale.name}
                         unoptimized
                         priority
+                        placeholder='blur' 
+                        blurDataURL={imageGroup.base64[1]}
                         className="w-full hover:scale-105 transform transition-transform ease-in-out duration-300 cursor-pointer"
                         width={100}
                         height={120}

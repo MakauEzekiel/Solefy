@@ -19,6 +19,7 @@ async function UdpateColor(saleData: any, color: any) {
 const Temp = ({saleData, color}:any) => {
     const [CurrentImages, setCurrentImages] = useState<any>(null);
     const [CurrentProductId, setCurrentProductId] = useState(null);
+    const [CurrentBase64, setCurrentBase64] = useState<any>(null);
     const [AvailableColors, setAvailableColors] = useState<any>(null);
     const [SelectedColor, setSelectedColor] = useState(null);
     const [selectedSize, setSelectedSize] = useState<any>(null);
@@ -39,6 +40,7 @@ const Temp = ({saleData, color}:any) => {
 
             setCurrentImages(current.imagesUrls);
             setCurrentProductId(current.id);
+            setCurrentBase64(current.base64);
             setAvailableColors(availableColorsArray);
             setSelectedColor(color);
             setSelectedSize(5);
@@ -51,6 +53,7 @@ const Temp = ({saleData, color}:any) => {
         const current = await UdpateColor(saleData, color);
         setCurrentImages(current.imagesUrls);
         setCurrentProductId(current.id);
+        setCurrentBase64(current.base64);
         setSelectedColor(color);
     }
     const availableSizes = [5, 6, 7, 8, 9, 10, 11, 12];
@@ -107,14 +110,14 @@ const Temp = ({saleData, color}:any) => {
                                 {index === 0 && (
                                     <>
                                         <div className='col-span-2 min-w-[100px] overflow-hidden'>
-                                            <Image src={image} alt='' className='w-full object-cover' width={100} height={100} unoptimized priority loading="eager"/>
+                                            <Image src={image} alt='' className='w-full object-cover' width={100} height={100} unoptimized priority placeholder='blur' blurDataURL={CurrentBase64[0]} loading="eager"/>
                                         </div>
                                     </>
                                 )}
                                 {index > 1 && (
                                     <>
                                         <div className='col-span-1 min-w-[100px] overflow-hidden'>
-                                            <Image src={image} alt='' className='w-full' width={100} height={100} unoptimized priority loading="eager"/>
+                                            <Image src={image} alt='' className='w-full' width={100} height={100} unoptimized priority placeholder='blur' blurDataURL={CurrentBase64[1]} loading="eager"/>
                                         </div>
                                     </>
                                 )}
