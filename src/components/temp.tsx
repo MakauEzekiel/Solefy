@@ -191,7 +191,7 @@ const Temp = ({saleData, color, reviews}:any) => {
                 <AiFillStar className='mt-[6px]'/>
                 <AiFillStar className='mt-[6px]'/>
                 <AiOutlineStar className='mt-[6px]'/>
-                <p className='pl-[8px] font-semibold text-1xl'>12 Reviews</p>
+                <p className='pl-[8px] font-semibold text-1xl'>{reviews.length} Reviews</p>
             </div>
             <button onClick={() => setShowModel(true)} className='text-[14px] font-semibold text-black'>write a review</button>
             <p className='mt-2 text-[18px] text-gray-800 font-bold'>R{saleData.price}.00</p>
