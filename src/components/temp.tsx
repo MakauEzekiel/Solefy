@@ -19,7 +19,7 @@ async function UdpateColor(saleData: any, color: any) {
     return null;
   }
 
-const Temp = ({saleData, color}:any) => {
+const Temp = ({saleData, color, reviews}:any) => {
     const [CurrentImages, setCurrentImages] = useState<any>(null);
     const [CurrentProductId, setCurrentProductId] = useState(null);
     const [CurrentBase64, setCurrentBase64] = useState<any>(null);
@@ -331,60 +331,34 @@ const Temp = ({saleData, color}:any) => {
                 <div className='w-full pt-8'>
                 <p className='text-4xl font-semibold text-center'>Reviews</p>
                 <div className='p-8 w-full'>
-                  <div className='w-full pt-8'>
-                    <div className='w-full grid grid-cols-2 gap-2'>
-                      <div className='w-full'><h2 className='text-2xl font-bold'>Ezekiel</h2></div>
-                      <div className='w-full pt-[3px]'><h2 className='text-center text-1xl text-gray-400'>2024/01/30</h2></div>
-                    </div>
-                    <div className='flex w-full'>
-                        <AiFillStar className='mt-[4px]'/>
-                        <AiFillStar className='mt-[4px]'/>
-                        <AiFillStar className='mt-[4px]'/>
-                        <AiFillStar className='mt-[4px]'/>
-                        <AiOutlineStar className='mt-[4px]'/>
-                    </div>
-                    <div className='w-full pt-4'>
-                      <p className='font-semibold text-gray-600'>I like the quality of the rubber. They are very comfortable. I am really satisfied with the sneakers.</p>
-                    </div>
-                  </div>
-                  <div className='w-full pt-8'>
-                    <div className='w-full grid grid-cols-2 gap-2'>
-                      <div className='w-full'><h2 className='text-2xl font-bold'>Jacob</h2></div>
-                      <div className='w-full pt-[3px]'><h2 className='text-center text-1xl text-gray-400'>2024/01/31</h2></div>
-                    </div>
-                    <div className='flex w-full'>
-                        <AiFillStar className='mt-[4px]'/>
-                        <AiFillStar className='mt-[4px]'/>
-                        <AiFillStar className='mt-[4px]'/>
-                        <AiOutlineStar className='mt-[4px]'/>
-                        <AiOutlineStar className='mt-[4px]'/>
-                    </div>
-                    <div className='w-full pt-4'>
-                      <p className='font-semibold text-gray-600'>I like the quality of the rubber. They are very comfortable. I am really satisfied with the sneakers.</p>
-                    </div>
-                  </div>
-                  <div className='w-full pt-8'>
-                    <div className='w-full grid grid-cols-2 gap-2'>
-                      <div className='w-full'><h2 className='text-2xl font-bold'>John</h2></div>
-                      <div className='w-full pt-[3px]'><h2 className='text-center text-1xl text-gray-400'>2024/02/04</h2></div>
-                    </div>
-                    <div className='flex w-full'>
-                        <AiFillStar className='mt-[4px]'/>
-                        <AiFillStar className='mt-[4px]'/>
-                        <AiFillStar className='mt-[4px]'/>
-                        <AiFillStar className='mt-[4px]'/>
-                        <AiFillStar className='mt-[4px]'/>
-                    </div>
-                    <div className='w-full pt-4'>
-                      <p className='font-semibold text-gray-600'>I like the quality of the rubber. They are very comfortable. I am really satisfied with the sneakers.</p>
-                    </div>
-                  </div>
+                  {reviews.map((review:any, index:any) => (
+                        <div className='w-full pt-8' key={index}>
+                        <div className='w-full grid grid-cols-2 gap-2'>
+                          <div className='w-full'><h2 className='text-2xl font-bold'>{review.name}</h2></div>
+                          <div className='w-full pt-[3px]'><h2 className='text-center text-1xl text-gray-400'>{new Date(review.date.seconds * 1000).toLocaleDateString()}</h2></div>
+                        </div>
+                        <div className='flex w-full'>
+                          {[...Array(5)].map((star, index) => {
+                            const ratingValue = index + 1;
+                            return (
+                              <span key={index}>
+                                {ratingValue <= review.rating ? <AiFillStar className='mt-[4px]'/> : <AiOutlineStar className='mt-[4px]'/>}
+                              </span>
+                            );
+                          })}
+                        </div>
+
+                        <div className='w-full pt-4'>
+                          <p className='font-semibold text-gray-600'>{review.comment}</p>
+                        </div>
+                      </div>
+                  ))}
                 </div>
               </div>
             )}
         </aside>
         </div>
-        <ReviewModal isVisible={ShowModel} onClose = {()=>setShowModel(false)}/>
+        <ReviewModal isVisible={ShowModel} onClose = {()=>setShowModel(false)} productId= {saleData.product_id} />
     </React.Fragment>
   )
 }
