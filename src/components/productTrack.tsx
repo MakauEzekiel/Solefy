@@ -83,7 +83,7 @@ const ProductTrack = ({salesData}:any) => {
                         blurDataURL={imageGroup.base64[1]}
                         className="w-full hover:scale-105 transform transition-transform ease-in-out duration-300 cursor-pointer"
                         width={100}
-                        height={120}
+                        height={140}
                         loading="eager"
                       />
                       <div>
