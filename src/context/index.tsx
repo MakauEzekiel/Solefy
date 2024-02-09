@@ -99,10 +99,6 @@ export function AppWrapper ({ children } : {
 
     const onAdd = (product: any, currentProductId: any, quantity: any, color: any) => {
         const existingProduct = cartItems.find((item) => (item.currentProductId === currentProductId));
-        if(existingProduct) {
-          console.log("color: "+existingProduct.color);
-          console.log("new color: "+color);
-        }
       
         if (existingProduct && existingProduct.color === color) {
           setCartItems(
@@ -113,7 +109,6 @@ export function AppWrapper ({ children } : {
         } else {
           const totalAmount = product.price * quantity;
           setCartItems([...cartItems, { ...product, currentProductId, quantity, color, totalAmount }]);
-          console.log([...cartItems, { ...product, currentProductId, quantity, color, totalAmount }]);
         }
         let totalPrice = 0;
         cartItems.map((sale:any) => {
@@ -125,20 +120,16 @@ export function AppWrapper ({ children } : {
 
       const toggleCartItemQuantity = (product_id:any, value:any) => {
             const newCartItems = [...cartItems];
-            console.log(product_id);
         
             const productIndex = newCartItems.findIndex((item) => item.currentProductId === product_id);
             if (productIndex === -1){
-              console.log('first if statement');
               return;
             }
         
             if (value === 'inc') {
-              console.log('second if statement');
             newCartItems[productIndex] = { ...newCartItems[productIndex], quantity: newCartItems[productIndex].quantity + 1, totalAmount:  newCartItems[productIndex].price * (newCartItems[productIndex].quantity + 1)};
             
             } else if (value === 'dec' && newCartItems[productIndex].quantity > 1) {
-              console.log('third if statement');
             newCartItems[productIndex] = { ...newCartItems[productIndex], quantity: newCartItems[productIndex].quantity - 1, totalAmount:  newCartItems[productIndex].price * (newCartItems[productIndex].quantity - 1) };
             }
             setCartItems(newCartItems);
@@ -150,9 +141,7 @@ export function AppWrapper ({ children } : {
       }
 
       const onRemove = (currentProductId: any) => {
-        console.log(cartItems);
         const newCartItems = cartItems.filter((item:any) => !(item.currentProductId === currentProductId));
-        console.log(newCartItems);
         setCartItems(newCartItems);
         setqty(cartItems.length);
         let totalPrice = 0;

@@ -52,7 +52,6 @@ const CategorySlider = ({salesData}:any) => {
             breakpoint: 480,
             settings: {
                 slidesToShow: 1,
-                centerPadding: "24px",
                 centerMode: false,
             },
         },
@@ -60,7 +59,6 @@ const CategorySlider = ({salesData}:any) => {
             breakpoint: 200,
             settings: {
                 slidesToShow: 1,
-                centerPadding: "24px",
                 centerMode: false,
             },
         },
