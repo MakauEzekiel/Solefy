@@ -7,7 +7,7 @@ import { useAppContext } from '@/context'
 import { RxCross2 } from 'react-icons/rx'
 
 const CartDrawer = () => {
-  const { cartItems, toggleCartItemQuantity, onRemove, setIsOpen, totalPrice } = useAppContext();
+  const { cartItems, toggleCartItemQuantity, onRemove, setIsCartOpen, totalPrice } = useAppContext();
   const cartRef = useRef();
   return (
     <div className='relative h-screen w-full bg-[#f2f2f2]'>
@@ -84,7 +84,7 @@ const CartDrawer = () => {
           <p className='mr-0 text-gray-500 text-3xl font-bold relative'>R{totalPrice}</p>
           </div>
         </div>
-        <button onClick={() => {setIsOpen(false)}} className="group relative bottom-2 min-h-[76px] w-[96%] overflow-hidden border border-black bg-[#f2f2f2] text-black transition-all before:absolute before:left-0 before:top-0 before:h-0 before:w-1/4 before:bg-black before:duration-500 after:absolute after:bottom-0 after:right-0 after:h-0 after:w-1/4 after:bg-black after:duration-500 hover:text-white hover:before:h-full hover:after:h-full">
+        <button onClick={() => setIsCartOpen(false)} className="group relative bottom-2 min-h-[76px] w-[96%] overflow-hidden border border-black bg-[#f2f2f2] text-black transition-all before:absolute before:left-0 before:top-0 before:h-0 before:w-1/4 before:bg-black before:duration-500 after:absolute after:bottom-0 after:right-0 after:h-0 after:w-1/4 after:bg-black after:duration-500 hover:text-white hover:before:h-full hover:after:h-full">
           <span className="top-0 flex h-full w-full items-center justify-center before:absolute before:bottom-0 before:left-1/4 before:z-0 before:h-0 before:w-1/4 before:bg-black before:duration-500 after:absolute after:right-1/4 after:top-0 after:z-0 after:h-0 after:w-1/4 after:bg-black after:duration-500 hover:text-white group-hover:before:h-full group-hover:after:h-full"></span>
           <span className="absolute bottom-0 left-0 right-0 top-0 z-10 flex h-full w-full items-center justify-center group-hover:text-white text-[18px] font-semibold">Continue Shopping</span>
         </button>
