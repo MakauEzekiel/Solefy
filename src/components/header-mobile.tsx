@@ -52,6 +52,7 @@ const HeaderMobile = () => {
 
   const handleDrawer = () => {
     setIsCartOpen(!IsCartOpen);
+    setShowPopUp(false);
   };
 
   useEffect(() => {
@@ -132,29 +133,31 @@ const HeaderMobile = () => {
         </Link>
       </button>
       <button onClick={handleDrawer} className='pointer-events-auto absolute right-14 top-[24px] z-30 text-gray-800'>
-        <AiOutlineShopping className='h-[22px] w-[22px]'/>
-        {/* <span className='absolute mt-[-28px] ml-[8px] text-[]'>0</span> */}
+        {/* <Link href='/cart'> */}
+          <AiOutlineShopping className='h-[22px] w-[22px]'/>
+          {/* <span className='absolute mt-[-28px] ml-[8px] text-[]'>0</span> */}
+        {/* </Link> */}
       </button>
       <MenuToggle toggle={toggleOpen} />
-      {IsCartOpen && (
+      {/* {IsCartOpen && (
         <div className="z-[99999999999999999999] fixed inset-0 transition-opacity">
           <div
             onClick={() => setIsCartOpen(false)}
             className="absolute inset-0 bg-black opacity-50"
           ></div>
         </div>
-      )}
+      )} */}
 
-      <aside
-        className={`transform top-0 right-0 w-full bg-[#f2f2f2] fixed h-full overflow-auto ease-in-out transition-all duration-700 z-[99999999991] ${
+      {/* <aside
+        className={`transform top-0 right-0 w-full bg-[#f2f2f2] fixed h-full ease-in-out transition-all duration-700 z-[99999999991] ${
           !IsCartOpen ? "translate-x-full" : "-translate-x-[0]"
         }`}
       >
-        <button onClick={handleDrawer} className="text-white mt-6 absolute right-[16px] z-[999999999999999999999999] hover:before:bg-white rounded-full h-[65px] w-[65px] overflow-hidden bg-black px-3 text-white shadow-2xl transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-white before:transition-all before:duration-500 hover:text-black hover:shadow-white hover:before:left-0 hover:before:w-full">
+        <button onClick={handleDrawer} className="text-white mt-6 absolute right-[16px] z-[999999999999999999999999] hover:before:bg-white rounded-full h-[65px] w-[65px] bg-black px-3 text-white shadow-2xl transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-white before:transition-all before:duration-500 hover:text-black hover:shadow-white hover:before:left-0 hover:before:w-full">
             <span className="relative z-10"><RxCross2 className='w-[40px] h-[40px]'/></span>
         </button>
         <CartDrawer/>
-      </aside>
+      </aside> */}
     </motion.nav>
   );
 };

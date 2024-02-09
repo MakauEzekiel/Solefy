@@ -142,11 +142,11 @@ const Header = () => {
       )}
 
       <aside
-        className={`transform top-0 right-0 md:w-[740px] w-full bg-[#f2f2f2] fixed h-full overflow-auto ease-in-out transition-all duration-700 z-[99999999991] ${
+        className={`transform top-0 right-0 md:w-[740px] w-full bg-[#f2f2f2] fixed h-full overflow-auto ease-in-out transition-all duration-700 z-[9999999999991] ${
           !IsCartOpen ? "translate-x-full" : "-translate-x-[0]"
         }`}
       >
-        <button onClick={handleDrawer} className="text-black mt-6 absolute right-[32px] hover:before:bg-black rounded-full h-[65px] w-[65px] overflow-hidden bg-white px-3 text-black shadow-2xl transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-black before:transition-all before:duration-500 hover:text-white hover:shadow-black hover:before:left-0 hover:before:w-full">
+        <button onClick={handleDrawer} className="hidden md:block text-black mt-6 absolute right-[32px] hover:before:bg-black rounded-full h-[65px] w-[65px] overflow-hidden bg-white px-3 text-black shadow-2xl transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-black before:transition-all before:duration-500 hover:text-white hover:shadow-black hover:before:left-0 hover:before:w-full">
             <span className="relative z-10"><RxCross2 className='w-[40px] h-[40px]'/></span>
         </button>
         <CartDrawer/>
