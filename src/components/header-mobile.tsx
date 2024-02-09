@@ -146,7 +146,7 @@ const HeaderMobile = () => {
       )}
 
       <aside
-        className={`transform top-0 right-0 w-full bg-[#f2f2f2] fixed h-full overflow-none ease-in-out transition-all duration-700 z-[99999999991] ${
+        className={`transform top-0 right-0 w-full bg-[#f2f2f2] fixed h-full overflow-auto ease-in-out transition-all duration-700 z-[99999999991] ${
           !IsCartOpen ? "translate-x-full" : "-translate-x-[0]"
         }`}
       >
