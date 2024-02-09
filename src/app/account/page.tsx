@@ -5,6 +5,7 @@ import { db, auth } from '@/app/firebaseConfig'
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { useRouter } from 'next/navigation';
 import { IoMdLogOut, IoMdArrowRoundBack } from 'react-icons/io';
+import { toast } from 'react-hot-toast';
 
 export default function AccountDetails() {
     const [email, setEmail] = useState<any>('');
@@ -48,6 +49,8 @@ export default function AccountDetails() {
                 else {
                   setAddressButtonText('Add an address');
                 }
+              }else {
+                setAddressButtonText('Add an address');
               }
             }
             setLoading(false);
@@ -130,6 +133,7 @@ export default function AccountDetails() {
               setTempName('');
               setTempSurname('');
               setTempEmail('');
+              toast.success(`Updated Successfully`);
               setUpdateInformationButton(false);
             }
               setLoading(false);
@@ -162,6 +166,7 @@ export default function AccountDetails() {
                   postalCode: postalCode
                 }
               });
+              toast.success(`Updated Successfully`);
               setAddAddressButton(false);
               setAddress({
                 streetAddress: streetAddress,
@@ -208,22 +213,22 @@ export default function AccountDetails() {
       };
 
   return (
-    <div className='w-[100%] min-h-[80vh] mt-[107px] px-16 py-16'>
-        <div className='flex items-center space-x-32 w-full h-full'>
-            <div className='w-[300px] '>
+    <div className='w-[100%] min-h-[80vh] mt-[107px] md:px-16 md:py-16 py-8'>
+        <div className='md:flex items-center md:space-x-32 w-full h-full'>
+            <div className='md:w-[300px] w-full'>
               <h2 className='text-center text-3xl font-semibold'>User Profile</h2>
-              <div className='w-full pt-8'>
-                  <button onClick={() => setButtonFlag('orders')} className={`w-full mb-4 pt-4 pb-4 text-2xl font-semibold ${ButtonFlag === 'orders' ? 'border-r-[4px] border-r-black' : 'border-r-[4px] border-r-[#f2f2f2] hover:border-r-gray-600' } transition duration-600 ease-in-out`}>
+              <div className='w-full pt-8 md:px-0 px-16'>
+                  <button onClick={() => setButtonFlag('orders')} className={`w-full md:text-center text-start mb-4 pt-4 pb-4 text-2xl font-semibold ${ButtonFlag === 'orders' ? 'border-r-[4px] border-r-black' : 'border-r-[4px] border-r-[#f2f2f2] hover:border-r-gray-600' } transition duration-600 ease-in-out`}>
                     My orders
                   </button>
-                  <button onClick={() => setButtonFlag('addresses')} className={`w-full mb-4 pt-4 pb-4 text-2xl font-semibold ${ButtonFlag === 'addresses' ? 'border-r-[4px] border-r-black' : 'border-r-[4px] border-r-[#f2f2f2] hover:border-r-gray-400' } transition duration-600 ease-in-out`}>
+                  <button onClick={() => setButtonFlag('addresses')} className={`w-full md:text-center text-start mb-4 pt-4 pb-4 text-2xl font-semibold ${ButtonFlag === 'addresses' ? 'border-r-[4px] border-r-black' : 'border-r-[4px] border-r-[#f2f2f2] hover:border-r-gray-400' } transition duration-600 ease-in-out`}>
                     My addresses
                   </button>
-                  <button onClick={() => setButtonFlag('informations')} className={`w-full mb-4 pt-4 pb-4 text-2xl font-semibold ${ButtonFlag === 'informations' ? 'border-r-[4px] border-r-black' : 'border-r-[4px] border-r-[#f2f2f2] hover:border-r-gray-400' } transition duration-600 ease-in-out`}>
+                  <button onClick={() => setButtonFlag('informations')} className={`w-full md:text-center text-start mb-4 pt-4 pb-4 text-2xl font-semibold ${ButtonFlag === 'informations' ? 'border-r-[4px] border-r-black' : 'border-r-[4px] border-r-[#f2f2f2] hover:border-r-gray-400' } transition duration-600 ease-in-out`}>
                     My informations
                   </button>
-                  <div className='w-full justify-center items-center text-center mt-[86px]'>
-                    <button onClick={handleLogout} className='text-1xl font-semibold border border-[#f2f2f2] hover:border hover:border-black transition duration-500 ease-in-out px-4 py-2'>
+                  <div className='w-full justify-center items-center text-center md:mb-0 mb-8 md:mt-[86px]'>
+                    <button onClick={handleLogout} className='text-1xl font-semibold border border-black md:border-[#f2f2f2] hover:border hover:border-black transition duration-500 ease-in-out px-4 py-2'>
                       <IoMdLogOut className='inline-block mr-2 mb-[4px]'/><span>Log out</span>
                     </button>
                   </div>
@@ -247,18 +252,18 @@ export default function AccountDetails() {
               )}
               {(ButtonFlag === 'addresses' && !AddAddressButton) && (
                 <div className='w-full text-center'>
-                  <div className='w-full'>
+                  <div className='w-full px-2 md:px-0'>
                       <h2 className='mt-8 text-2xl text-gray-600'>My addresses</h2>
                       <p className='text-gray-600'>Find here your registered addresses</p>
                       {(address && address.streetAddress !== '' && address.city !== '' && address.province !== '' && address.postalCode !== '') && (
-                        <div className='min-w-[400px] mt-8 border border-black py-8 flex space-x-32 w-full h-full px-8'>
-                            <div className='w-fit'>
+                        <div className='md:min-w-[400px] w-full mt-8 border border-black py-8 flex space-x-32 w-full h-full px-8'>
+                            <div className='md:min-w-[200px] w-full'>
                                 <p className='uppercase text-black text-[12px] font-semibold mb-4'>Street Address</p>
                                 <p className='uppercase text-black text-[12px] font-semibold mb-4'>City</p>
                                 <p className='uppercase text-black text-[12px] font-semibold mb-4'>Province</p>
                                 <p className='uppercase text-black text-[12px] font-semibold'>Postal Code</p>
                             </div>
-                            <div className='min-w-[200px]'>
+                            <div className='md:min-w-[200px] w-full'>
                                 <p className='text-black text-[14px] font-semibold mb-[12px]'>{address.streetAddress}</p>
                                 <p className='text-black text-[14px] font-semibold mb-[12px]'>{address.city}</p>
                                 <p className='text-black text-[14px] font-semibold mb-[12px]'>{address.province}</p>
@@ -286,7 +291,7 @@ export default function AccountDetails() {
                           <IoMdArrowRoundBack className='inline-block mr-2 mb-[4px]'/><span>BACK TO THE LIST</span>
                         </button>
                       </div>
-                      <form onSubmit={handleSubmit} action="#">
+                      <form onSubmit={handleSubmit} action="#" className='md:px-0 px-4'>
                       <div className="border-b border-gray-900/10 pb-12">
                           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
 
@@ -327,17 +332,17 @@ export default function AccountDetails() {
                 </div>
               )}
               {(ButtonFlag === 'informations' && !UpdateInformationButton) && (
-                <div className='min-w-[700px]'>
+                <div className='md:min-w-[700px] w-full px-2 md:px-0'>
                     <h2 className='text-2xl font-semibold mt-8'>My information</h2>
                     <p className='text-1xl font-semibold text-gray-600'>Find here your informations</p>
-                    <div className='min-w-[400px] mt-8 border border-black py-8 flex space-x-32 w-full h-full px-8'>
+                    <div className='md:min-w-[400px] w-full mt-8 border border-black py-8 flex space-x-32 w-full h-full px-8'>
                         <div className='w-fit'>
                             <p className='uppercase text-black text-[12px] font-semibold mb-4'>Name</p>
                             <p className='uppercase text-black text-[12px] font-semibold mb-4'>Surname</p>
                             <p className='uppercase text-black text-[12px] font-semibold mb-4'>Email</p>
                             <p className='uppercase text-black text-[12px] font-semibold'>Phone</p>
                         </div>
-                        <div className='min-w-[200px]'>
+                        <div className='md:min-w-[200px] w-full'>
                             <p className='text-black text-[14px] font-semibold mb-[12px]'>{name}</p>
                             <p className='text-black text-[14px] font-semibold mb-[12px]'>{surname}</p>
                             <p className='text-black text-[14px] font-semibold mb-[12px]'>{email}</p>
@@ -354,11 +359,11 @@ export default function AccountDetails() {
                   <div className='w-full'>
                       <h2 className="text-base font-semibold leading-7 text-gray-900 mb-8">Update your information</h2>
                       <div className='w-full text-start justify-start items-start'>
-                        <button onClick={() => setAddAddressButton(false)} className='text-start justify-start items-start text-1xl font-semibold border border-[#f2f2f2] hover:border hover:border-black transition duration-500 ease-in-out px-4 py-2'>
+                        <button onClick={() => setUpdateInformationButton(false)} className='text-start justify-start items-start text-1xl font-semibold border border-[#f2f2f2] hover:border hover:border-black transition duration-500 ease-in-out px-4 py-2'>
                           <IoMdArrowRoundBack className='inline-block mr-2 mb-[4px]'/><span>BACK TO THE LIST</span>
                         </button>
                       </div>
-                      <form onSubmit={handleSaveInformation} action="#">
+                      <form onSubmit={handleSaveInformation} className='px-4 md:px-0' action="#">
                       <div className="border-b border-gray-900/10 pb-12">
                           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
 
