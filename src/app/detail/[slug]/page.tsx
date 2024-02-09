@@ -12,12 +12,12 @@ async function fetchProductFromFirestore(collectionName: string, productId: stri
   return { id: docSnap.id, ...docSnap.data() };
 }
 
-async function fetchSalesFromFirestore(collectionName: string) {
-  const querySnapshot = await getDocs(collection(db, collectionName));
+async function fetchSalesFromFirestore(collectionName: string, productId: string) {
+  const docRef = doc(db, collectionName, productId);
+  const docSnap = await getDoc(docRef);
   const data: any = [];
-  querySnapshot.forEach((doc) => {
-    data.push({id:doc.id, ...doc.data()});
-  });
+  data.push({ id: docSnap.id, ...docSnap.data() })
+
   return data;
 }
 
@@ -40,8 +40,11 @@ const Details = async ({params}:any) => {
   let productColor = parts[1];
 
   const currentSaleData = await fetchProductFromFirestore('sales', productId);
-  const SalesData = await fetchSalesFromFirestore('sales');
+  const data: any = [];
+  const SalesData = await fetchSalesFromFirestore('sales', productId);
+  // data.push(currentSaleData);
   const reviews = await FetchReviews(productId);
+  console.log(SalesData);
   return (
     <div className='w-full bg-[#f2f2f2] '>
         <div className='w-full md:mt-[107px] md:grid-cols-3 grid-cols-1 grid md:gap-8 sm:pl-[2px] md:pt-8 pb-16 bg-[#f2f2f2]'>

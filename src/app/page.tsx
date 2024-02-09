@@ -37,6 +37,7 @@ export default function Home() {
       <HeroBanner/>
       <CategorySlider salesData={SalesData}/>
       <CategoryBanner/>
+      <div className='w-full justify-center items-center text-center mt-16'><h2 className='text-4xl font-bold uppercase'>Popular Sales</h2></div>
       <ProductTrack salesData={SalesData}/>
       <main className="hidden md:block bg-gradient-to-r from-[#f2f2f2] to-[#f2f2f2] w-full min-h-screen mx-auto grid place-items-center">
         <h2 className='uppercase text-4xl font-bold'>NEWS</h2>

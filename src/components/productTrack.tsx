@@ -11,6 +11,7 @@ import 'react-loading-skeleton/dist/skeleton.css'
 
 const ProductTrack = ({salesData}:any) => {
   const [loading, setLoading] = useState(true);
+  console.log(salesData);
   
   useEffect(() => {
     if (salesData.length > 0 || salesData.length > 0) {
@@ -103,7 +104,7 @@ const ProductTrack = ({salesData}:any) => {
     
   return (
     <div className='border-b border-gray-400 pb-32 pt-4 md:pl-24 pl-8 overflow-hidden md:pr-24 pr-8'>
-        <div className='w-full justify-center items-center text-center'><h2 className='text-4xl font-bold uppercase'>Popular Sales</h2></div>
+        {/* <div className='w-full justify-center items-center text-center'><h2 className='text-4xl font-bold uppercase'>Popular Sales</h2></div> */}
         <div className='w-full mt-8'>
           <Slider {...settings} className="ml-0 w-full">
               {salesData.map((sale:any) => (
