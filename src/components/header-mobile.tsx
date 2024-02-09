@@ -80,12 +80,11 @@ const HeaderMobile = () => {
       animate={isOpen ? 'open' : 'closed'}
       custom={height}
       className={`fixed inset-0 z-50 w-full md:hidden transition-all duration-600 ease-in-out mt-${showPopUp && !scrolled ? '8' : '0'} ${
-        isOpen ? '' : 'pointer-events-none'
-      }`}
+        isOpen ? '' : 'pointer-events-none'}`}
       ref={containerRef}
     >
       <motion.div
-        className="absolute inset-0 right-0 w-full bg-white"
+        className="absolute inset-0 right-0 w-full bg-[#f2f2f2]"
         variants={sidebar}
       />
       <motion.ul

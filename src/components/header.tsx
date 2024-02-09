@@ -52,7 +52,7 @@ const Header = () => {
               `sticky inset-x-0 top-[0] z-30 w-full transition-all duration-600 ease-in-out fixed`,
               {
                 'bg-[#f2f2f2] transition-all duration-1000 ease-in-out': scrolled,
-                'bg-[#f2f2f2] text-black transition-all duration-1000 ease-in-out ': selectedLayout,
+                ' text-black transition-all duration-1000 ease-in-out ': selectedLayout,
               },
             )}
           >
@@ -81,7 +81,7 @@ const Header = () => {
                 `letter-spacing-4 text-[22px] text-[#D4D4D8] font-black transition-all duration-600 ease-in-out`,
                 {
                   'letter-spacing-4 text-[#000000] text-[22px] font-black transition-all duration-1000 ease-in-out ': scrolled,
-                  'letter-spacing-4 bg-[#f2f2f2] text-[#000000] text-[22px] font-black transition-all duration-1000 ease-in-out': selectedLayout,
+                  'letter-spacing-4 text-[#000000] text-[22px] font-black transition-all duration-1000 ease-in-out': selectedLayout,
                 },
               )}>S O L E F Y</h2>
                 </Link>
