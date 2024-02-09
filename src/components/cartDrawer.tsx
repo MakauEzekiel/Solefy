@@ -27,7 +27,7 @@ const CartDrawer = () => {
                               <Image src={imageGroup.imagesUrls[2]} alt='' width={100} height={100} className='sm:w-36 sm:h-36'style={{objectFit:"cover"}} unoptimized />
                               <div className='w-full pl-2'>
                                   <p className='font-bold sm:text-2xl text-1xl'>{sale.name}</p>
-                                  <p className='text-sm'>Size: Small</p>
+                                  <p className='text-sm'>Size: {sale.selectedSize}</p>
                               </div>
                               <div className='hidden sm:block min-w-[100px]'>
                               <div className="py-2 px-3 inline-block bg-[#f2f2f2]" data-hs-input-number>

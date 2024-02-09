@@ -97,18 +97,18 @@ export function AppWrapper ({ children } : {
     }, [user]);
     
 
-    const onAdd = (product: any, currentProductId: any, quantity: any, color: any) => {
+    const onAdd = (product: any, currentProductId: any, quantity: any, color: any, selectedSize: any) => {
         const existingProduct = cartItems.find((item) => (item.currentProductId === currentProductId));
       
         if (existingProduct && existingProduct.color === color) {
           setCartItems(
             cartItems.map((item) =>
-              item.currentProductId === currentProductId ? { ...item, quantity: item.quantity + quantity, color: color, totalAmount: item.price * (item.quantity + quantity) } : item
+              item.currentProductId === currentProductId ? { ...item, quantity: item.quantity + quantity, color: color, selectedSize: selectedSize, totalAmount: item.price * (item.quantity + quantity) } : item
             )
           );
         } else {
           const totalAmount = product.price * quantity;
-          setCartItems([...cartItems, { ...product, currentProductId, quantity, color, totalAmount }]);
+          setCartItems([...cartItems, { ...product, currentProductId, quantity, color, selectedSize, totalAmount }]);
         }
         let totalPrice = 0;
         cartItems.map((sale:any) => {
