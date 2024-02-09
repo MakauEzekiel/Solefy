@@ -12,10 +12,9 @@ async function fetchProductFromFirestore(collectionName: string, productId: stri
 }
 
 const Details = async ({params}:any) => {
-  // console.log(params.slug);
   let str = params.slug;
   let parts = str.split("-");
-  let productId = parts[0]; // This will be "4adsg3qhDiaHoLUfurcv"
+  let productId = parts[0];
   let productColor = parts[1];
 
   const currentSaleData = await fetchProductFromFirestore('sales', productId);

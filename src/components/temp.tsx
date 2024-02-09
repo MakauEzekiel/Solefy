@@ -27,21 +27,16 @@ const Temp = ({saleData, color}:any) => {
     const [type, setType] = useState('');
     const [ShowModel, setShowModel] = useState(false);
     const { onAdd } = useAppContext();
-    // console.log(saleData);
 
     useEffect(() => {
         async function updateCurrentImages() {
             const current = await UdpateColor(saleData, color);
-            // const availableColors:any = UdpateAvailableColors(saleData);
 
             const availableColorsArray:any[] = [];
-            // console.log(saleData.saleImages[0].color);
             for(let i = 0; i < saleData.saleImages.length; i++) {
-                // console.log('available colors: '+ saleData.saleImages[0].color)
                 availableColorsArray.push(saleData.saleImages[i].color);
             }
 
-            // console.log('colors: '+availableColors[1].color);
             setCurrentImages(current.imagesUrls);
             setCurrentProductId(current.id);
             setAvailableColors(availableColorsArray);
