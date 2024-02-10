@@ -134,13 +134,14 @@ const Temp = ({saleData, color, reviews}:any) => {
   return (
     <React.Fragment>
         <div className='w-full col-span-2 mr-[150px]'>
-            <div className='hidden md:block w-full grid grid-cols-2 gap-2' ref={imagesDivRef}>
+            <div className='hidden w-full md:grid md:grid-cols-2 md:gap-2' ref={imagesDivRef}>
                 {CurrentImages && (
                     <>
                         {imagesToShow.map((image:any, index: number) => (
                             <React.Fragment key={index}>
                                 {index === 0 && (
                                     <>
+                                        {console.log("Index:"+index)}
                                         <div className='col-span-2 min-w-[100px] overflow-hidden'>
                                             <Image src={image} alt='' className='w-full object-cover' width={100} height={100} unoptimized priority placeholder='blur' blurDataURL={CurrentBase64[0]} loading="eager"/>
                                         </div>
@@ -148,6 +149,7 @@ const Temp = ({saleData, color, reviews}:any) => {
                                 )}
                                 {index > 1 && (
                                     <>
+                                        {console.log("Index:"+index)}
                                         <div className='col-span-1 min-w-[100px] overflow-hidden'>
                                             <Image src={image} alt='' className='w-full' width={100} height={100} unoptimized priority placeholder='blur' blurDataURL={CurrentBase64[1]} loading="eager"/>
                                         </div>
