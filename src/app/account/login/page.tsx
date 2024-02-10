@@ -59,15 +59,14 @@ export default function Login() {
             setCredentialError( 'Please fill in all required information');
         }
     } catch (error:any) {
-        // setLoading(false);
-        setIsLoading(false);
         const errorCode = error.code;
         const errorMessage = error.message;
         if(errorCode === 'auth/invalid-credential') {
-            setErrorFlag(true);
             setCredentialError(' Please check your email and password.');
         }
-    }
+    }finally {
+        setIsLoading(false);
+      }
   };
   return (
     <div className='block w-[100%] mt-[107px] min-h-[100vh]'>

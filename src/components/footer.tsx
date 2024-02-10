@@ -122,6 +122,7 @@ const Footer = () => {
         <Link href=''>
           <p>Privacy Policy</p>
         </Link>
+        <p className=''>Created by Ezekiel Makau</p>
       </div>
       {isOpen && (
         <div className="z-[9999999999] fixed inset-0 transition-opacity">

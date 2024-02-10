@@ -2,7 +2,7 @@
 
 import Footer from '@/components/footer'
 import React, {useState} from 'react'
-import { collection, query, where, getDocs, Firestore, orderBy, startAt, endAt } from 'firebase/firestore'
+import { collection, query, where, getDocs, orderBy, startAt, endAt } from 'firebase/firestore'
 import { db } from '../firebaseConfig'
 import ProductList from '@/components/ProductList'
 
@@ -33,7 +33,11 @@ export default function Search() {
                     sales.push(doc.data());
                 });
                 if(sales.length > 0) {
-                    let totalResults = sales.length;
+                    // let totalResults = sales.length;
+                    let totalResults = 0;
+                    for(let i = 0; i < sales.length; i++) {
+                        totalResults += sales[i].saleImages.length;
+                    }
                     setSearchResultsText(totalResults.toString() + 'Results Found')
                     setSales(sales);
                     setLoading(false);
