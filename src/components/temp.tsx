@@ -31,6 +31,7 @@ const Temp = ({saleData, color, reviews}:any) => {
     const [type, setType] = useState('');
     const [ShowModel, setShowModel] = useState(false);
     const { onAdd } = useAppContext();
+    const [AverageRating, setAverageRating] = useState(0);
 
     useEffect(() => {
         async function updateCurrentImages() {
@@ -39,6 +40,16 @@ const Temp = ({saleData, color, reviews}:any) => {
             const availableColorsArray:any[] = [];
             for(let i = 0; i < saleData.saleImages.length; i++) {
                 availableColorsArray.push(saleData.saleImages[i].color);
+            }
+            let count = 0;
+            for(let i = 0; i < reviews.length; i++) {
+                count += reviews[i].rating;
+            }
+            if(reviews.length === 0) {
+              setAverageRating(5);
+            }
+            else{
+              setAverageRating((count/reviews.length));
             }
 
             setCurrentImages(current.imagesUrls);
@@ -186,11 +197,14 @@ const Temp = ({saleData, color, reviews}:any) => {
             <p className='text-3xl font-bold text-gray-800 uppercase'>{saleData.name}</p>
             <p className='text-1xl text-gray-400 font-semibold'>{SelectedColor}</p>
             <div className='flex w-full'>
-                <AiFillStar className='mt-[6px]'/>
-                <AiFillStar className='mt-[6px]'/>
-                <AiFillStar className='mt-[6px]'/>
-                <AiFillStar className='mt-[6px]'/>
-                <AiOutlineStar className='mt-[6px]'/>
+              {[...Array(5)].map((star, index) => {
+                const ratingValue = index + 1;
+                return (
+                  <span key={index}>
+                    {ratingValue <= AverageRating ? <AiFillStar className='mt-[4px]'/> : <AiOutlineStar className='mt-[4px]'/>}
+                  </span>
+                );
+              })}
                 <p className='pl-[8px] font-semibold text-1xl'>{reviews.length} Reviews</p>
             </div>
             <button onClick={() => setShowModel(true)} className='text-[14px] font-semibold text-black'>write a review</button>
