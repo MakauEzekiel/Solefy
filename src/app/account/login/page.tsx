@@ -5,12 +5,14 @@ import Footer from '@/components/footer'
 import Link from 'next/link'
 import { auth, signInWithEmailAndPassword } from '@/app/firebaseConfig'
 import { useRouter } from 'next/navigation'
+import { toast } from 'react-hot-toast'
 
 export default function Login() {
     const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [credentialError, setCredentialError] = useState('');
   const [errorFlag, setErrorFlag] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const router = useRouter();
 
@@ -40,22 +42,30 @@ export default function Login() {
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
-
-    setLoading(true);
+    setIsLoading(true);
 
     try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
-      setErrorFlag(false);
-      console.log('signed in successfully');
-      router.push('/account');
+        if(email !== '' && password !== ''){
+            // setLoading(true);
+            const userCredential = await signInWithEmailAndPassword(auth, email, password);
+            const user = userCredential.user;
+            setErrorFlag(false);
+            toast.success(`Signed in successfully!`);
+            router.push('/account');
+            setPassword('');
+            setEmail('');
+        }else {
+            setErrorFlag(true);
+            setCredentialError( 'Please fill in all required information');
+        }
     } catch (error:any) {
-        setLoading(false);
+        // setLoading(false);
+        setIsLoading(false);
         const errorCode = error.code;
         const errorMessage = error.message;
         if(errorCode === 'auth/invalid-credential') {
             setErrorFlag(true);
-            setCredentialError('Invalid credentials');
+            setCredentialError(' Please check your email and password.');
         }
     }
   };
@@ -68,11 +78,11 @@ export default function Login() {
                 {errorFlag && (
                     <div className="mt-8 w-full md:w-[500px] h-[74px] bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
                         <strong className="font-bold">Invalid Credential!</strong>
-                        <span className="block sm:inline"> Please check your email and password.</span>
+                        <span className="block sm:inline">{credentialError}</span>
                     </div>
                 )}
 
-                <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6 w-full md:max-w-[500px] mt-8 " action="#">
+                <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6 w-full md:max-w-[500px] mt-8 ">
                     <div>
                         <label htmlFor="email" className="block mb-2 text-sm font-medium text-black">Your email</label>
                         <input type="email" name="email" id="email" onChange={e => setEmail(e.target.value)} className="h-[54px] border border-top-dotted bg-white text-gray-900 sm:text-sm focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Email Address"/>
@@ -87,9 +97,16 @@ export default function Login() {
                         </div>
                         <a href="#" className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot password?</a>
                     </div>
-                    <button type="submit" className="justfity-center items-center text-center text-red hover:before:bg-redborder-black relative h-[50px] w-[120px] overflow-hidden border border-black bg-white px-3 text-black shadow-2xl transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-black before:transition-all before:duration-500 hover:text-white hover:shadow-black hover:before:left-0 hover:before:w-full">
-                        <span className="relative z-10 uppercase">log in</span>
-                    </button>
+                    <button type="submit" className="mt-4 justfity-center items-center text-center text-red hover:before:bg-redborder-black relative h-[50px] w-[120px] overflow-hidden border border-black bg-white px-3 text-black transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-black before:transition-all before:duration-500 hover:text-white hover:shadow-black hover:before:left-0 hover:before:w-full">
+                            {isLoading ? (
+                                <div className="relative z-10 flex items-center space-x-2">
+                                    <div className="spinner"></div>
+                                    <span>loading...</span>
+                                </div>
+                            ) : (
+                                <span className="relative z-10 uppercase">Login</span>
+                            )}
+                        </button>
                     <p className="text-sm font-light text-gray-500 dark:text-gray-600">
                         Don’t have an account yet? <Link href="/account/signup" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign up</Link>
                     </p>

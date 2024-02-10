@@ -5,6 +5,7 @@ import Footer from '@/components/footer'
 import Link from 'next/link'
 import { db, auth, createUserWithEmailAndPassword } from '@/app/firebaseConfig'
 import { doc, setDoc } from "firebase/firestore";
+import { toast } from 'react-hot-toast'
 
 export default function Signup() {
     const [name, setName] = useState('');
@@ -14,22 +15,31 @@ export default function Signup() {
     const [registeredFlag, setRegisteredFlag] = useState(false);
     const [loading, setLoading] = useState(false);
     const [errorFlag, setErrorFlag] = useState(false);
+    const [credentialError, setCredentialError] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
   
     const handleSubmit = async (event: any) => {
         event.preventDefault();
-        setLoading(true);
+        setIsLoading(true);
       
         try {
-          const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-          const user = userCredential.user;
-          setErrorFlag(false);
-          await setDoc(doc(db, 'users', user.uid), {
-            name: name,
-            surname: surname,
-          });
-
-          setRegisteredFlag(true);
-          await auth.signOut();
+            if(email !== '' && password !== '' && name !== '' && surname !== '') {
+                // setLoading(true);
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+                setErrorFlag(false);
+                await setDoc(doc(db, 'users', user.uid), {
+                  name: name,
+                  surname: surname,
+                });
+      
+                setRegisteredFlag(true);
+                await auth.signOut();
+                toast.success(`Signed up successfully!`);
+            } else {
+                setErrorFlag(true);
+                setCredentialError( 'Please fill in all required information');
+            }
       
         } catch (error: any) {
             const errorCode = error.code;
@@ -37,10 +47,11 @@ export default function Signup() {
             console.log(errorCode);
             if(errorCode === 'auth/email-already-in-use') {
               console.log('Email already in use');
+              setCredentialError( 'Email already in use');
                 setErrorFlag(true);
             }
         }finally {
-            setLoading(false);
+            setIsLoading(false);
           }
       };
 
@@ -72,7 +83,7 @@ export default function Signup() {
                     <p className='text-[18px] font-semibold'>Enter your details to create an account.</p>
                     {errorFlag && (
                         <div className="mt-8 w-full md:w-[500px] h-[54px] bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                            <strong className="font-bold">Email already in use!</strong>
+                            <strong className="font-bold">{credentialError}</strong>
                             <span className="block sm:inline"></span>
                         </div>
                     )}
@@ -94,8 +105,16 @@ export default function Signup() {
                             <input type="password" name="password" id="password" onChange={e => setPassword(e.target.value)} placeholder="Password" className="border h-[54px] bg-white text-gray-900 sm:text-sm focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
                         </div>
                         <button type="submit" className="mt-4 justfity-center items-center text-center text-red hover:before:bg-redborder-black relative h-[50px] w-[120px] overflow-hidden border border-black bg-white px-3 text-black transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-black before:transition-all before:duration-500 hover:text-white hover:shadow-black hover:before:left-0 hover:before:w-full">
-                            <span className="relative z-10 uppercase">sign in</span>
+                            {isLoading ? (
+                                <div className="flex items-center space-x-2">
+                                    <div className="spinner"></div>
+                                    <span>loading...</span>
+                                </div>
+                            ) : (
+                                <span className="relative z-10 uppercase">Sign in</span>
+                            )}
                         </button>
+
                     </form>
                 </div>
             )}
