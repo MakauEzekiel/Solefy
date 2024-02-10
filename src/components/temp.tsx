@@ -32,6 +32,7 @@ const Temp = ({saleData, color, reviews}:any) => {
     const [ShowModel, setShowModel] = useState(false);
     const { onAdd } = useAppContext();
     const [AverageRating, setAverageRating] = useState(0);
+    const [NumberOfStars, setNumberOfStars] = useState(5);
 
     useEffect(() => {
         async function updateCurrentImages() {
@@ -47,6 +48,7 @@ const Temp = ({saleData, color, reviews}:any) => {
             }
             if(reviews.length === 0) {
               setAverageRating(5);
+              setNumberOfStars(0);
             }
             else{
               setAverageRating((count/reviews.length));
@@ -197,7 +199,7 @@ const Temp = ({saleData, color, reviews}:any) => {
             <p className='text-3xl font-bold text-gray-800 uppercase'>{saleData.name}</p>
             <p className='text-1xl text-gray-400 font-semibold'>{SelectedColor}</p>
             <div className='flex w-full'>
-              {[...Array(5)].map((star, index) => {
+              {[...Array(NumberOfStars)].map((star, index) => {
                 const ratingValue = index + 1;
                 return (
                   <span key={index}>
