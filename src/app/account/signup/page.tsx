@@ -50,6 +50,10 @@ export default function Signup() {
               setCredentialError( 'Email already in use');
                 setErrorFlag(true);
             }
+            else {
+                setErrorFlag(true);
+                setCredentialError('Invalid credentials');
+            }
         }finally {
             setIsLoading(false);
           }

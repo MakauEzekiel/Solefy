@@ -141,7 +141,6 @@ const Temp = ({saleData, color, reviews}:any) => {
                             <React.Fragment key={index}>
                                 {index === 0 && (
                                     <>
-                                        {console.log("Index:"+index)}
                                         <div className='col-span-2 min-w-[100px] overflow-hidden'>
                                             <Image src={image} alt='' className='w-full object-cover' width={100} height={100} unoptimized priority placeholder='blur' blurDataURL={CurrentBase64[0]} loading="eager"/>
                                         </div>
@@ -149,7 +148,6 @@ const Temp = ({saleData, color, reviews}:any) => {
                                 )}
                                 {index > 1 && (
                                     <>
-                                        {console.log("Index:"+index)}
                                         <div className='col-span-1 min-w-[100px] overflow-hidden'>
                                             <Image src={image} alt='' className='w-full' width={100} height={100} unoptimized priority placeholder='blur' blurDataURL={CurrentBase64[1]} loading="eager"/>
                                         </div>

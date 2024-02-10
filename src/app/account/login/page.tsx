@@ -62,6 +62,10 @@ export default function Login() {
         const errorCode = error.code;
         const errorMessage = error.message;
         if(errorCode === 'auth/invalid-credential') {
+            setErrorFlag(true);
+            setCredentialError(' Please check your email and password.');
+        }else {
+            setErrorFlag(true);
             setCredentialError(' Please check your email and password.');
         }
     }finally {
