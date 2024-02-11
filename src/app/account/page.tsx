@@ -6,6 +6,7 @@ import { doc, getDoc, setDoc } from "firebase/firestore";
 import { useRouter } from 'next/navigation';
 import { IoMdLogOut, IoMdArrowRoundBack } from 'react-icons/io';
 import { toast } from 'react-hot-toast';
+import Link from 'next/link';
 
 export default function AccountDetails() {
     const [email, setEmail] = useState<any>('');
@@ -42,7 +43,7 @@ export default function AccountDetails() {
               setSurname(data.surname);
               setEmail(user.email);
               if(data.address) {
-                if(data.address.streetAddress !== '' && data.address.city !== '' && data.address.province !== '' && data.address.postCode !== '') {
+                if(data.address.streetAddress !== '' && data.address.city !== '' && data.address.province !== '' && data.address.postalCode !== '') {
                   setAddressButtonText('Update address');
                   setAddress(data.address);
                 }
@@ -70,7 +71,7 @@ export default function AccountDetails() {
             const data = docSnap.data();
             if(data){
               if(data.address) {
-                if(data.address.streetAddress !== '' && data.address.city !== '' && data.address.province !== '' && data.address.postCode !== '') {
+                if(data.address.streetAddress !== '' && data.address.city !== '' && data.address.province !== '' && data.address.postalCode !== '') {
                   setAddressButtonText('Update address');
                   setAddress(data.address);
                 }
@@ -94,7 +95,7 @@ export default function AccountDetails() {
                 if(data){
                   setName(data.name);
                   setSurname(data.surname);
-                  if(data.address && data.address.streetAddress !== '' && data.address.city !== '' && data.address.province !== '' && data.address.postCode !== '') {
+                  if(data.address && data.address.streetAddress !== '' && data.address.city !== '' && data.address.province !== '' && data.address.postalCode !== '') {
                     setAddress(data.address);
                   }
                 }
@@ -243,9 +244,11 @@ export default function AccountDetails() {
                       <p className='text-gray-600'>Find here your past and present orders</p>
                       <div className='w-full pt-16'>
                           <p className='text-1xl font-semibold'>Sorry, you do not have past or present orders</p>
-                          <button type="submit" className=" mt-8 justfity-center items-center text-center text-white hover:before:bg-redborder-white relative h-[50px] w-[220px] overflow-hidden border border-black bg-black px-3 text-white transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-white before:transition-all before:duration-500 hover:text-black hover:shadow-white hover:before:left-0 hover:before:w-full">
-                              <span className="relative z-10">Start Shopping</span>
-                          </button>
+                          <Link href="/">
+                            <button type="submit" className=" mt-8 justfity-center items-center text-center text-white hover:before:bg-redborder-white relative h-[50px] w-[220px] overflow-hidden border border-black bg-black px-3 text-white transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-white before:transition-all before:duration-500 hover:text-black hover:shadow-white hover:before:left-0 hover:before:w-full">
+                                <span className="relative z-10">Start Shopping</span>
+                            </button>
+                          </Link>
                       </div>
                   </div>
                 </div>

@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@iconify/react": "^4.1.1",
+    "canvas-confetti": "^1.9.2",
     "clsx": "^2.1.0",
     "firebase": "^10.8.0",
     "framer-motion": "^11.0.3",
@@ -25,6 +26,7 @@
     "tailwind-merge": "^2.2.1"
   },
   "devDependencies": {
+    "@types/canvas-confetti": "^1.6.4",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

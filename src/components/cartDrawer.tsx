@@ -1,6 +1,9 @@
 'use client'
 
 import React, { useRef } from 'react'
+import { db, auth } from '@/app/firebaseConfig'
+import { doc, getDoc, setDoc } from "firebase/firestore"
+import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import { FaPlus, FaMinus } from 'react-icons/fa'
 import { useAppContext } from '@/context'
@@ -8,7 +11,20 @@ import { RxCross2 } from 'react-icons/rx'
 
 const CartDrawer = () => {
   const { cartItems, toggleCartItemQuantity, onRemove, setIsCartOpen, totalPrice } = useAppContext();
-  const cartRef = useRef();
+  const router = useRouter();
+
+  const handleClick = async () => {
+    const user = auth.currentUser;
+    if (user) {
+      // User is signed in, redirect to checkout page
+      router.push('/checkout');
+      setIsCartOpen(false);
+    } else {
+      // No user is signed in, redirect to sign up page
+      router.push('/account/login');
+      setIsCartOpen(false);
+    }
+  }
   return (
     <React.Fragment>
       <div className='h-full w-full bg-[#f2f2f2]'>
@@ -89,7 +105,7 @@ const CartDrawer = () => {
             <span className="top-0 flex h-full w-full items-center justify-center before:absolute before:bottom-0 before:left-1/4 before:z-0 before:h-0 before:w-1/4 before:bg-black before:duration-500 after:absolute after:right-1/4 after:top-0 after:z-0 after:h-0 after:w-1/4 after:bg-black after:duration-500 hover:text-white group-hover:before:h-full group-hover:after:h-full"></span>
             <span className="absolute bottom-0 left-0 right-0 top-0 z-10 flex h-full w-full items-center justify-center group-hover:text-white text-[18px] font-semibold">Continue Shopping</span>
           </button>
-          <button disabled={true} className="group relative bottom-0 min-h-[66px] md:min-h-[86px] w-[100%] overflow-hidden border border-black bg-black text-white transition-all before:absolute before:left-0 before:top-0 before:h-0 before:w-1/4 before:bg-[#f2f2f2] before:duration-500 after:absolute after:bottom-0 after:right-0 after:h-0 after:w-1/4 after:bg-[#f2f2f2] after:duration-500 hover:text-black hover:before:h-full hover:after:h-full">
+          <button onClick={handleClick} disabled={cartItems.length === 0}  className="group relative bottom-0 min-h-[66px] md:min-h-[86px] w-[100%] overflow-hidden border border-black bg-black text-white transition-all before:absolute before:left-0 before:top-0 before:h-0 before:w-1/4 before:bg-[#f2f2f2] before:duration-500 after:absolute after:bottom-0 after:right-0 after:h-0 after:w-1/4 after:bg-[#f2f2f2] after:duration-500 hover:text-black hover:before:h-full hover:after:h-full">
             <span className="top-[0] flex h-full w-full items-center justify-center before:absolute before:bottom-0 before:left-1/4 before:z-0 before:h-0 before:w-1/4 before:bg-[#f2f2f2] before:duration-500 after:absolute after:right-1/4 after:top-0 after:z-0 after:h-0 after:w-1/4 after:bg-[#f2f2f2] after:duration-500 hover:text-black group-hover:before:h-full group-hover:after:h-full"></span>
             <span className="absolute bottom-0 left-0 right-0 top-0 z-10 flex h-full w-full items-center justify-center group-hover:text-black text-[18px] font-semibold">Order</span>
           </button>
