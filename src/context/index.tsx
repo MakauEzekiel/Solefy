@@ -151,6 +151,11 @@ export function AppWrapper ({ children } : {
         })
         settotalPrice(totalPrice);
       }
+      const onRemoveAll = () => {
+        setCartItems([]);
+        setqty(cartItems.length);
+        settotalPrice(0);
+      }
 
     const incQty = () => {
         setqty((prevQty)  => prevQty + 1);
@@ -179,7 +184,8 @@ export function AppWrapper ({ children } : {
             IsCartOpen,
             setIsCartOpen,
             showPopUp,
-            setShowPopUp
+            setShowPopUp,
+            onRemoveAll
         }}>
             {children}
         </AppContext.Provider>

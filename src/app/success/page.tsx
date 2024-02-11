@@ -7,13 +7,10 @@ import { runFireworks } from '@/lib/successUtils';
 import { useAppContext } from '@/context';
 
 const Success = () => {
-//   const { setCartItems, setTotalPrice, setTotalQuantities } = useAppContext();
+  const { onRemoveAll } = useAppContext();
   
   useEffect(() => {
-    // localStorage.clear();
-    // setCartItems([]);
-    // setTotalPrice(0);
-    // setTotalQuantities(0);
+    onRemoveAll();
     runFireworks();
   }, []);
 
