@@ -11,7 +11,6 @@ import 'react-loading-skeleton/dist/skeleton.css'
 
 const ProductTrack = ({salesData}:any) => {
   const [loading, setLoading] = useState(true);
-  console.log(salesData);
   
   useEffect(() => {
     if (salesData.length > 0 || salesData.length > 0) {

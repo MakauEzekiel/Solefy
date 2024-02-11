@@ -26,6 +26,7 @@ export default function Checkout() {
     const [province, setProvince] = useState('');
     const [postalCode, setPostalCode] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const deliveryPrice = 75;
 
     const router = useRouter();
@@ -34,6 +35,8 @@ export default function Checkout() {
         const unsubscribe = auth.onAuthStateChanged((user) => {
           if (!user) {
             router.push('/account/login');
+          }else {
+            setLoading(false);
           }
         });
     
@@ -104,6 +107,16 @@ export default function Checkout() {
                 setIsLoading(false);
               }
             }
+
+            if (loading) {
+                return <main className="w-[100%] absolute  text-center item-center justify-center top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-4">
+                        <div className="w-full h-full">
+                            <div className="flex justify-center items-center">
+                                <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-black"></div>
+                            </div>
+                        </div>
+                    </main>;
+              }
 
   return (
     <div className='w-full mt-[107px] p-8'>
