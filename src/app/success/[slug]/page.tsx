@@ -13,6 +13,8 @@ const Success = ({params}:any) => {
   useEffect(() => {
     onRemoveAll();
     runFireworks();
+    console.log("url: "+ params.slug);
+    console.log("succssUid: "+SuccessUid);
     if(params.slug === SuccessUid) {
       console.log('Can access the success page');
       setSuccessUid(null);
