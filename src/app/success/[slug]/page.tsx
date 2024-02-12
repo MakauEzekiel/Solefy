@@ -16,16 +16,6 @@ const Success = ({params}:any) => {
   const [flag, setFlag] = useState(false);
   const router = useRouter();
 
-  if(flag) {
-    const user = auth.currentUser;
-    if(user){
-      console.log(user);
-      const cartItems:any = [];
-      setCartItems(cartItems);
-      const docRef = doc(db, 'carts', user.uid);
-      setDoc(docRef, { cartItems });
-    }
-  }
   
   useEffect(() => {
     const uid = localStorage.getItem('uid');
@@ -44,6 +34,23 @@ const Success = ({params}:any) => {
     }
 
   }, [router]);
+
+  useEffect(() => {
+      const clearCart = () => {
+        if(flag) {
+          const user = auth.currentUser;
+          if(user){
+            console.log(user);
+            const cartItems:any = [];
+            setCartItems(cartItems);
+            const docRef = doc(db, 'carts', user.uid);
+            setDoc(docRef, { cartItems });
+        }
+        }
+    }
+    clearCart();
+
+  }, [flag]);
 
   if (loading) {
     return <main className="w-[100%] absolute  text-center item-center justify-center top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-4">
