@@ -94,21 +94,21 @@ export function AppWrapper ({ children } : {
       }
     }, [cartItems]);
 
-    useEffect(() => {
-      const user = auth.currentUser;
-        if(user) {
-          console.log('inside if ');
-          const docRef = doc(db, 'carts', user.uid);
-          console.log(cartItems);
-          console.log("user id: "+user.uid);
-          setDoc(docRef, {cartItems });
-        }else {
-          console.log('inside if ');
-          console.log(cartItems);
-          console.log('local storage');
-          localStorage.setItem('cartItems', JSON.stringify(cartItems));
-        }
-    }, [user]);
+    // useEffect(() => {
+    //   const user = auth.currentUser;
+    //     if(user) {
+    //       console.log('inside if ');
+    //       const docRef = doc(db, 'carts', user.uid);
+    //       console.log(cartItems);
+    //       console.log("user id: "+user.uid);
+    //       setDoc(docRef, {cartItems });
+    //     }else {
+    //       console.log('inside if ');
+    //       console.log(cartItems);
+    //       console.log('local storage');
+    //       localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    //     }
+    // }, [user]);
     
 
     const onAdd = (product: any, currentProductId: any, quantity: any, color: any, selectedSize: any) => {
