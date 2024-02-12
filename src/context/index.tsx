@@ -98,9 +98,11 @@ export function AppWrapper ({ children } : {
         if(user) {
           console.log('inside if ');
           const docRef = doc(db, 'carts', user.uid);
-          setDoc(docRef, { cartItems });
+          console.log(cartItems);
+          setDoc(docRef, {cartItems });
         }else {
           console.log('inside if ');
+          console.log(cartItems);
           localStorage.setItem('cartItems', JSON.stringify(cartItems));
         }
     }, [user]);
