@@ -150,8 +150,18 @@ export function AppWrapper ({ children } : {
         setqty(cartItems.length);
       }
       const onRemoveAll = () => {
-        setCartItems([]);
-        setqty(cartItems.length);
+        if (user) {
+          setCartItems([]);
+          setqty(cartItems.length);
+          setUser(user);
+          const docRef = doc(db, 'carts', user.uid);
+          setDoc(docRef, { cartItems });
+        } else {
+          setCartItems([]);
+          setqty(cartItems.length);
+          setUser(null);
+          localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        }
       }
 
     const incQty = () => {
