@@ -10,6 +10,7 @@ import { useRouter } from 'next/navigation';
 const Success = ({params}:any) => {
   let str = params.slug;
   const { onRemoveAll, SuccessUid, setSuccessUid } = useAppContext();
+  const [loading, setLoading] = useState(true);
   const router = useRouter();
   
   useEffect(() => {
@@ -20,6 +21,7 @@ const Success = ({params}:any) => {
     console.log("succssUid: "+uid);
     if(params.slug === uid) {
       console.log('Can access the success page');
+      setLoading(false);
       setSuccessUid(null);
       localStorage.setItem('uid', '');
     }
@@ -29,6 +31,16 @@ const Success = ({params}:any) => {
     }
 
   }, []);
+
+  if (loading) {
+    return <main className="w-[100%] absolute  text-center item-center justify-center top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-4">
+            <div className="w-full h-full">
+                <div className="flex justify-center items-center">
+                    <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-black"></div>
+                </div>
+            </div>
+        </main>;
+  }
 
   return (
     <div className="success-wrapper mt-[107px]">
