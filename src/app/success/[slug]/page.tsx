@@ -5,10 +5,12 @@ import Link from 'next/link';
 import { BsBagCheckFill } from 'react-icons/bs';
 import { runFireworks } from '@/lib/successUtils';
 import { useAppContext } from '@/context';
+import { useRouter } from 'next/navigation';
 
 const Success = ({params}:any) => {
   let str = params.slug;
   const { onRemoveAll, SuccessUid, setSuccessUid } = useAppContext();
+  const router = useRouter();
   
   useEffect(() => {
     onRemoveAll();
@@ -23,6 +25,7 @@ const Success = ({params}:any) => {
     }
     else {
       console.log('Can not access the success page');
+      router.push('/');
     }
 
   }, []);
