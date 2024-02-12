@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { db, auth } from '@/app/firebaseConfig'
 import { doc, getDoc, setDoc } from "firebase/firestore"
 import { useRouter } from 'next/navigation'
@@ -10,8 +10,16 @@ import { useAppContext } from '@/context'
 import { RxCross2 } from 'react-icons/rx'
 
 const CartDrawer = () => {
-  const { cartItems, toggleCartItemQuantity, onRemove, setIsCartOpen, totalPrice } = useAppContext();
+  const { cartItems, toggleCartItemQuantity, onRemove, setIsCartOpen, totalPrice, settotalPrice } = useAppContext();
   const router = useRouter();
+
+  useEffect(() => {
+    let totalAmount = 0;
+      cartItems.map((sale:any) => {
+        totalAmount += sale.totalAmount;
+      })
+      settotalPrice(totalAmount);
+    }, [cartItems]);
 
   const handleClick = async () => {
     const user = auth.currentUser;

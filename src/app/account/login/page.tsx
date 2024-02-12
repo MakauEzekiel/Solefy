@@ -6,8 +6,10 @@ import Link from 'next/link'
 import { auth, signInWithEmailAndPassword } from '@/app/firebaseConfig'
 import { useRouter } from 'next/navigation'
 import { toast } from 'react-hot-toast'
+import { useAppContext } from '@/context'
 
 export default function Login() {
+    const { updateCartItems } = useAppContext();
     const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [credentialError, setCredentialError] = useState('');
@@ -50,8 +52,10 @@ export default function Login() {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
             setErrorFlag(false);
+            // updateCartItems();
             toast.success(`Signed in successfully!`);
             router.push('/account');
+            // updateCartItems();
             setPassword('');
             setEmail('');
         }else {

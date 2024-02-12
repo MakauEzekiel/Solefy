@@ -23,20 +23,42 @@ export function AppWrapper ({ children } : {
     useEffect(() => {
       const unsubscribe = auth.onAuthStateChanged((user) => {
         if (user) {
+          const localCart = localStorage.getItem('cartItems');
+          let localCartItems = null;
+          if (localCart) {
+            localCartItems = JSON.parse(localCart);
+          }
           const docRef = doc(db, 'carts', user.uid);
           getDoc(docRef).then((docSnap) => {
             if (docSnap.exists()) {
-              setCartItems(docSnap.data().cartItems);
+              const userCartItems = docSnap.data().cartItems;
+              if(localCartItems.length > 0) {
+                if(userCartItems.length > 0){
+                  const docRef = doc(db, 'carts', user.uid);
+                  const cartItems = [...userCartItems, ...localCartItems];
+                  setCartItems(cartItems); 
+                  setDoc(docRef, {cartItems});              
+               }
+                else {
+                  const docRef = doc(db, 'carts', user.uid);
+                  const cartItems = [...localCartItems];
+                  setCartItems(localCartItems);
+                  setDoc(docRef, {cartItems});
+                 }
+                localStorage.setItem('cartItems', JSON.stringify([]));
+              }
+              else {
+                if(docSnap.data().cartItems){
+                  setCartItems(docSnap.data().cartItems);
+                }
+                else {
+                  setCartItems([]);
+                }
+              }
               setqty(cartItems.length);
-              let totalPrice = 0;
-              docSnap.data().cartItems.map((sale:any) => {
-                totalPrice += sale.totalAmount;
-              })
-              settotalPrice(totalPrice);
             } else {
               setCartItems([]);
               setqty(cartItems.length);
-              settotalPrice(0);
             }
           });
         } else {
@@ -44,11 +66,6 @@ export function AppWrapper ({ children } : {
           if (localCart) {
             setCartItems(JSON.parse(localCart));
             setqty(cartItems.length);
-            let totalPrice = 0;
-            cartItems.map((sale:any) => {
-              totalPrice += sale.totalAmount;
-            })
-            settotalPrice(totalPrice);
           }
         }
         setflag(1);
@@ -60,24 +77,17 @@ export function AppWrapper ({ children } : {
 
     useEffect(() => {
       if(flag > 1){
-        const unsubscribe = auth.onAuthStateChanged((user) => {
-          if (user) {
-            setUser(user);
-            const docRef = doc(db, 'carts', user.uid);
-            setDoc(docRef, { cartItems });
-          } else {
-            setUser(null);
-            localStorage.setItem('cartItems', JSON.stringify(cartItems));
-          }
-        });
+        const user = auth.currentUser;
+        if (user) {
+          setUser(user);
+          const docRef = doc(db, 'carts', user.uid);
+          setDoc(docRef, { cartItems });
+        } else {
+          setUser(null);
+          localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        }
     
         setqty(cartItems.length);
-        let totalPrice = 0;
-        cartItems.map((sale:any) => {
-          totalPrice += sale.totalAmount;
-        })
-        settotalPrice(totalPrice);
-        return () => unsubscribe();
       }
       else {
         setqty(cartItems.length);
@@ -85,16 +95,18 @@ export function AppWrapper ({ children } : {
       }
     }, [cartItems]);
 
-    useEffect(() => {
-      if(flag > 1){
-        if(user) {
-          const docRef = doc(db, 'carts', user.uid);
-          setDoc(docRef, { cartItems });
-        }else {
-          localStorage.setItem('cartItems', JSON.stringify(cartItems));
-        }
-      }
-    }, [user]);
+    // useEffect(() => {
+    //   if(flag > 1){
+    //     if(user) {
+    //       console.log('inside if ');
+    //       const docRef = doc(db, 'carts', user.uid);
+    //       setDoc(docRef, { cartItems });
+    //     }else {
+    //       console.log('inside if ');
+    //       localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    //     }
+    //   }
+    // }, [user]);
     
 
     const onAdd = (product: any, currentProductId: any, quantity: any, color: any, selectedSize: any) => {
@@ -110,12 +122,7 @@ export function AppWrapper ({ children } : {
           const totalAmount = product.price * quantity;
           setCartItems([...cartItems, { ...product, currentProductId, quantity, color, selectedSize, totalAmount }]);
         }
-        let totalPrice = 0;
-        cartItems.map((sale:any) => {
-          totalPrice += sale.totalAmount;
-        })
         toast.success(`${product.name} added to the cart.`);
-        settotalPrice(totalPrice);
         setIsCartOpen(true);
       }
 
@@ -134,27 +141,16 @@ export function AppWrapper ({ children } : {
             newCartItems[productIndex] = { ...newCartItems[productIndex], quantity: newCartItems[productIndex].quantity - 1, totalAmount:  newCartItems[productIndex].price * (newCartItems[productIndex].quantity - 1) };
             }
             setCartItems(newCartItems);
-            let totalPrice = 0;
-            newCartItems.map((sale:any) => {
-              totalPrice += sale.totalAmount;
-            })
-            settotalPrice(totalPrice);
       }
 
       const onRemove = (currentProductId: any) => {
         const newCartItems = cartItems.filter((item:any) => !(item.currentProductId === currentProductId));
         setCartItems(newCartItems);
         setqty(cartItems.length);
-        let totalPrice = 0;
-        newCartItems.map((sale:any) => {
-          totalPrice += sale.totalAmount;
-        })
-        settotalPrice(totalPrice);
       }
       const onRemoveAll = () => {
         setCartItems([]);
         setqty(cartItems.length);
-        settotalPrice(0);
       }
 
     const incQty = () => {
@@ -185,7 +181,8 @@ export function AppWrapper ({ children } : {
             setIsCartOpen,
             showPopUp,
             setShowPopUp,
-            onRemoveAll
+            onRemoveAll,
+            settotalPrice
         }}>
             {children}
         </AppContext.Provider>
