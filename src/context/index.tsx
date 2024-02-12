@@ -80,11 +80,9 @@ export function AppWrapper ({ children } : {
       if(flag > 1){
         const user = auth.currentUser;
         if (user) {
-          setUser(user);
           const docRef = doc(db, 'carts', user.uid);
           setDoc(docRef, { cartItems });
         } else {
-          setUser(null);
           localStorage.setItem('cartItems', JSON.stringify(cartItems));
         }
     
@@ -96,18 +94,18 @@ export function AppWrapper ({ children } : {
       }
     }, [cartItems]);
 
-    // useEffect(() => {
-    //   if(flag > 1){
-    //     if(user) {
-    //       console.log('inside if ');
-    //       const docRef = doc(db, 'carts', user.uid);
-    //       setDoc(docRef, { cartItems });
-    //     }else {
-    //       console.log('inside if ');
-    //       localStorage.setItem('cartItems', JSON.stringify(cartItems));
-    //     }
-    //   }
-    // }, [user]);
+    useEffect(() => {
+      if(flag > 1){
+        if(user) {
+          console.log('inside if ');
+          const docRef = doc(db, 'carts', user.uid);
+          setDoc(docRef, { cartItems });
+        }else {
+          console.log('inside if ');
+          localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        }
+      }
+    }, [user]);
     
 
     const onAdd = (product: any, currentProductId: any, quantity: any, color: any, selectedSize: any) => {
