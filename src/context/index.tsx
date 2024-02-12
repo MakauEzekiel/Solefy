@@ -95,7 +95,6 @@ export function AppWrapper ({ children } : {
     }, [cartItems]);
 
     useEffect(() => {
-      if(flag > 1){
         if(user) {
           console.log('inside if ');
           const docRef = doc(db, 'carts', user.uid);
@@ -104,7 +103,6 @@ export function AppWrapper ({ children } : {
           console.log('inside if ');
           localStorage.setItem('cartItems', JSON.stringify(cartItems));
         }
-      }
     }, [user]);
     
 
