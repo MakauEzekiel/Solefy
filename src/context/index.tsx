@@ -152,13 +152,15 @@ export function AppWrapper ({ children } : {
       const onRemoveAll = () => {
         const user = auth.currentUser;
         if (user) {
-          setCartItems([]);
+          const cartItems:any = [];
+          setCartItems(cartItems);
           setqty(cartItems.length);
           setUser(user);
           const docRef = doc(db, 'carts', user.uid);
           setDoc(docRef, { cartItems });
         } else {
-          setCartItems([]);
+          const cartItems:any = [];
+          setCartItems(cartItems);
           setqty(cartItems.length);
           setUser(null);
           localStorage.setItem('cartItems', JSON.stringify(cartItems));
