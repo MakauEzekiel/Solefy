@@ -6,12 +6,16 @@ import { BsBagCheckFill } from 'react-icons/bs';
 import { runFireworks } from '@/lib/successUtils';
 import { useAppContext } from '@/context';
 import { useRouter } from 'next/navigation';
+import { db, auth } from '@/app/firebaseConfig';
 
 const Success = ({params}:any) => {
   let str = params.slug;
   const { onRemoveAll } = useAppContext();
   const [loading, setLoading] = useState(true);
   const router = useRouter();
+
+  const user = auth.currentUser;
+  console.log(user);
   
   useEffect(() => {
     const uid = localStorage.getItem('uid');
