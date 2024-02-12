@@ -7,18 +7,24 @@ import { runFireworks } from '@/lib/successUtils';
 import { useAppContext } from '@/context';
 import { useRouter } from 'next/navigation';
 import { db, auth } from '@/app/firebaseConfig';
+import { doc, getDoc, setDoc } from "firebase/firestore";
 
 const Success = ({params}:any) => {
   let str = params.slug;
-  const { onRemoveAll } = useAppContext();
+  const { onRemoveAll, setCartItems } = useAppContext();
   const [loading, setLoading] = useState(true);
   const [flag, setFlag] = useState(false);
   const router = useRouter();
 
   if(flag) {
     const user = auth.currentUser;
-    console.log(user);
-    onRemoveAll();
+    if(user){
+      console.log(user);
+      const cartItems:any = [];
+      setCartItems(cartItems);
+      const docRef = doc(db, 'carts', user.uid);
+      setDoc(docRef, { cartItems });
+    }
   }
   
   useEffect(() => {
