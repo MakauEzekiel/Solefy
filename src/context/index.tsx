@@ -150,6 +150,7 @@ export function AppWrapper ({ children } : {
         setqty(cartItems.length);
       }
       const onRemoveAll = () => {
+        const user = auth.currentUser;
         if (user) {
           setCartItems([]);
           setqty(cartItems.length);

@@ -15,13 +15,13 @@ const Success = ({params}:any) => {
   
   useEffect(() => {
     onRemoveAll();
-    runFireworks();
     const uid = localStorage.getItem('uid');
     console.log("url: "+ params.slug);
     console.log("succssUid: "+uid);
     if(params.slug === uid) {
       console.log('Can access the success page');
       setLoading(false);
+      runFireworks();
       setSuccessUid(null);
       localStorage.setItem('uid', '');
     }
