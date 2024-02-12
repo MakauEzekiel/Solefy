@@ -13,9 +13,6 @@ const Success = ({params}:any) => {
   const { onRemoveAll } = useAppContext();
   const [loading, setLoading] = useState(true);
   const router = useRouter();
-
-  const user = auth.currentUser;
-  console.log(user);
   
   useEffect(() => {
     const uid = localStorage.getItem('uid');
@@ -26,6 +23,8 @@ const Success = ({params}:any) => {
       setLoading(false);
       runFireworks();
       localStorage.setItem('uid', '');
+      const user = auth.currentUser;
+      console.log(user);
       onRemoveAll();
     }
     else {
