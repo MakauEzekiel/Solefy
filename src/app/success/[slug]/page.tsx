@@ -12,7 +12,14 @@ const Success = ({params}:any) => {
   let str = params.slug;
   const { onRemoveAll } = useAppContext();
   const [loading, setLoading] = useState(true);
+  const [flag, setFlag] = useState(false);
   const router = useRouter();
+
+  if(flag) {
+    const user = auth.currentUser;
+    console.log(user);
+    onRemoveAll();
+  }
   
   useEffect(() => {
     const uid = localStorage.getItem('uid');
@@ -23,9 +30,7 @@ const Success = ({params}:any) => {
       setLoading(false);
       runFireworks();
       localStorage.setItem('uid', '');
-      const user = auth.currentUser;
-      console.log(user);
-      onRemoveAll();
+      setFlag(true);
     }
     else {
       console.log('Can not access the success page');
