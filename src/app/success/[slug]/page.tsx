@@ -14,7 +14,6 @@ const Success = ({params}:any) => {
   const router = useRouter();
   
   useEffect(() => {
-    onRemoveAll();
     const uid = localStorage.getItem('uid');
     console.log("url: "+ params.slug);
     console.log("succssUid: "+uid);
@@ -24,6 +23,7 @@ const Success = ({params}:any) => {
       runFireworks();
       setSuccessUid(null);
       localStorage.setItem('uid', '');
+      onRemoveAll();
     }
     else {
       console.log('Can not access the success page');
