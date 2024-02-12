@@ -246,7 +246,7 @@ export default function Checkout() {
                     <input type="hidden" name="notify_url" value="https://solefy.vercel.app/"/>
                     <input type="hidden" name="amount" value={totalPrice+deliveryPrice}/>
                     <input type="hidden" name="item_name" value="#00001"/>
-                    <button disabled={!payButtonFlag} type="submit" className=" mt-8 justfity-center items-center text-center text-white hover:before:bg-redborder-[#f2f2f2] rounded relative h-[50px] w-full overflow-hidden border border-green-900 bg-green-900 px-3 text-[#f2f2f2] transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-[#f2f2f2] before:transition-all before:duration-500 hover:text-green-800 hover:shadow-white hover:before:left-0 hover:before:w-full">
+                    <button onClick={handleUid} disabled={!payButtonFlag} type="submit" className=" mt-8 justfity-center items-center text-center text-white hover:before:bg-redborder-[#f2f2f2] rounded relative h-[50px] w-full overflow-hidden border border-green-900 bg-green-900 px-3 text-[#f2f2f2] transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-[#f2f2f2] before:transition-all before:duration-500 hover:text-green-800 hover:shadow-white hover:before:left-0 hover:before:w-full">
                         <span className="relative z-10 font-semibold">Pay now</span>
                     </button>
                 </form>
