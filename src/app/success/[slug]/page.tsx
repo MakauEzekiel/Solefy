@@ -9,7 +9,7 @@ import { useRouter } from 'next/navigation';
 
 const Success = ({params}:any) => {
   let str = params.slug;
-  const { onRemoveAll, SuccessUid, setSuccessUid } = useAppContext();
+  const { onRemoveAll } = useAppContext();
   const [loading, setLoading] = useState(true);
   const router = useRouter();
   
@@ -21,7 +21,6 @@ const Success = ({params}:any) => {
       console.log('Can access the success page');
       setLoading(false);
       runFireworks();
-      setSuccessUid(null);
       localStorage.setItem('uid', '');
       onRemoveAll();
     }
@@ -30,7 +29,7 @@ const Success = ({params}:any) => {
       router.push('/');
     }
 
-  }, []);
+  }, [router]);
 
   if (loading) {
     return <main className="w-[100%] absolute  text-center item-center justify-center top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-4">
