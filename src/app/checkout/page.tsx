@@ -8,9 +8,10 @@ import { useAppContext } from '@/context'
 import Image from 'next/image'
 import image from '@/assets/newsThree.avif'
 import { toast } from 'react-hot-toast'
+import { v4 as uuidv4 } from 'uuid';
 
 export default function Checkout() {
-    const { cartItems, toggleCartItemQuantity, onRemove, setIsCartOpen, totalPrice } = useAppContext();
+    const { cartItems, toggleCartItemQuantity, onRemove, setIsCartOpen, totalPrice, setSuccessUid } = useAppContext();
     const [payButtonFlag, setPayButtonFlag] = useState(false);
     const [email, setEmail] = useState<any>('');
     const [tempEmail, setTempEmail] = useState<any>('');
@@ -27,6 +28,7 @@ export default function Checkout() {
     const [postalCode, setPostalCode] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [loading, setLoading] = useState(true);
+    const [ uid, setUid] = useState<any>(null);
     const deliveryPrice = 75;
 
     const router = useRouter();
@@ -61,6 +63,8 @@ export default function Checkout() {
                     setCity(data.address.city);
                     setProvince(data.address.province);
                     setPostalCode(data.address.postalCode);
+                    const uniqueId = uuidv4();
+                    setUid(uniqueId);
                     setPayButtonFlag(true);
                   }
                 }
@@ -97,6 +101,8 @@ export default function Checkout() {
                   });
                 }
                 toast.success(`Address saved Successfully`);
+                const uniqueId = uuidv4();
+                setUid(uniqueId);
                 setPayButtonFlag(true);
             
               } catch (error: any) {
@@ -106,6 +112,10 @@ export default function Checkout() {
               }finally {
                 setIsLoading(false);
               }
+            }
+
+            const handleUid = () => {
+                setSuccessUid(uid);
             }
 
             if (loading) {
@@ -231,7 +241,7 @@ export default function Checkout() {
                 <form action="https://sandbox.payfast.co.za​/eng/process" method="post">
                     <input type="hidden" name="merchant_id" value="10000100"/>
                     <input type="hidden" name="merchant_key" value="46f0cd694581a"/>
-                    <input type="hidden" name="return_url" value={`https://solefy.vercel.app/success`}/>
+                    <input type="hidden" name="return_url" value={`https://solefy.vercel.app/success/${uid}`}/>
                     <input type="hidden" name="cancel_url" value="https://solefy.vercel.app/checkout"/>
                     <input type="hidden" name="notify_url" value="https://solefy.vercel.app/"/>
                     <input type="hidden" name="amount" value={totalPrice+deliveryPrice}/>

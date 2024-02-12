@@ -6,12 +6,21 @@ import { BsBagCheckFill } from 'react-icons/bs';
 import { runFireworks } from '@/lib/successUtils';
 import { useAppContext } from '@/context';
 
-const Success = () => {
-  const { onRemoveAll } = useAppContext();
+const Success = ({params}:any) => {
+  let str = params.slug;
+  const { onRemoveAll, SuccessUid, setSuccessUid } = useAppContext();
   
   useEffect(() => {
     onRemoveAll();
     runFireworks();
+    if(params.slug === SuccessUid) {
+      console.log('Can access the success page');
+      setSuccessUid(null);
+    }
+    else {
+      console.log('Can not access the success page');
+    }
+
   }, []);
 
   return (

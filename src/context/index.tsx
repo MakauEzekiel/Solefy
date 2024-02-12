@@ -19,6 +19,7 @@ export function AppWrapper ({ children } : {
     const [qty, setqty] = useState(0); 
     const [IsCartOpen, setIsCartOpen] = useState(false);
     const [flag, setflag] = useState(0);
+    const [ SuccessUid, setSuccessUid] = useState<any>(null);
 
     useEffect(() => {
       const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -182,7 +183,9 @@ export function AppWrapper ({ children } : {
             showPopUp,
             setShowPopUp,
             onRemoveAll,
-            settotalPrice
+            settotalPrice,
+            SuccessUid,
+            setSuccessUid
         }}>
             {children}
         </AppContext.Provider>
