@@ -66,6 +66,7 @@ export default function Checkout() {
                     const uniqueId = uuidv4();
                     setUid(uniqueId);
                     setSuccessUid(uniqueId);
+                    localStorage.setItem('uid', uniqueId);
                     setPayButtonFlag(true);
                   }
                 }
