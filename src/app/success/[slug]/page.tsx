@@ -18,7 +18,7 @@ const Success = ({params}:any) => {
   if(flag) {
     const user = auth.currentUser;
     console.log(user);
-    onRemoveAll();
+    // onRemoveAll();
   }
   
   useEffect(() => {
