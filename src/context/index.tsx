@@ -99,6 +99,7 @@ export function AppWrapper ({ children } : {
           console.log('inside if ');
           const docRef = doc(db, 'carts', user.uid);
           console.log(cartItems);
+          console.log("user id: "+user.uid);
           setDoc(docRef, {cartItems });
         }else {
           console.log('inside if ');
