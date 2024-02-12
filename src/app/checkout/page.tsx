@@ -65,6 +65,7 @@ export default function Checkout() {
                     setPostalCode(data.address.postalCode);
                     const uniqueId = uuidv4();
                     setUid(uniqueId);
+                    setSuccessUid(uniqueId);
                     setPayButtonFlag(true);
                   }
                 }
@@ -103,6 +104,7 @@ export default function Checkout() {
                 toast.success(`Address saved Successfully`);
                 const uniqueId = uuidv4();
                 setUid(uniqueId);
+                setSuccessUid(uniqueId);
                 setPayButtonFlag(true);
             
               } catch (error: any) {
