@@ -24,7 +24,7 @@ export function AppWrapper ({ children } : {
       const unsubscribe = auth.onAuthStateChanged((user) => {
         if (user) {
           const localCart = localStorage.getItem('cartItems');
-          let localCartItems = null;
+          let localCartItems:any = null;
           if (localCart) {
             localCartItems = JSON.parse(localCart);
           }
